@@ -1,0 +1,116 @@
+/* ---------------- NAVBAR ---------------- */
+.top-navbar {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 20;
+    color: white;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .nav-left,
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+  }
+  
+  .nav-text {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+  
+  .nav-logo {
+    height: 50px;
+  }
+  
+  /* thin white line */
+  .nav-line {
+    width: 90%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.7);
+    margin: 90px auto 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+  
+  /* ---------------- HERO SECTION ---------------- */
+  
+  .hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-bg {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+
+  .hero-text {
+    position: absolute;
+    bottom: 80px;
+    left: 200px;
+    margin-left: 250px;
+    color: white;
+    text-align: left;
+    font-family:'Times New Roman', Times, serif ;
+
+  }
+  
+  .hero-title {
+    font-size: 90px;
+    font-weight: 700;
+    transform: rotate(15deg);
+    margin: 0;
+  }
+  
+  .hero-subtitle {
+    font-size: 22px;
+    letter-spacing: 4px;
+    margin-top: 2px;
+    transform: rotate(15deg);
+  }
+  
+  
+  .discover-btn {
+    position: absolute;
+    bottom: 80px;
+    right: 100px;
+    padding: 12px 40px;
+    border-radius: 30px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .discover-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .navbar-toggler-icon {
+    padding-top: 50px;
+    padding-left: 20px;
+    filter: invert(1);
+  }
+  
