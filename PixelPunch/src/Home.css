@@ -1,116 +1,300 @@
 /* ---------------- NAVBAR ---------------- */
 .top-navbar {
-    position: absolute;
-    top: 20px;
-    width: 100%;
-    padding: 0 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 20;
-    color: white;
-    font-family: "Poppins", sans-serif;
-  }
-  
-  .nav-left,
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  
-  .menu-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 26px;
-    cursor: pointer;
-  }
-  
-  .nav-text {
-    font-size: 14px;
-    letter-spacing: 2px;
-  }
-  
-  .nav-logo {
-    height: 50px;
-  }
-  
-  /* thin white line */
-  .nav-line {
-    width: 90%;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.7);
-    margin: 90px auto 0 auto;
-    position: absolute;
-    left: 0;
-    right: 0;
-    z-index: 10;
-  }
-  
-  /* ---------------- HERO SECTION ---------------- */
-  
-  .hero {
-    height: 100vh;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .hero-bg {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-  
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
 
-  .hero-text {
-    position: absolute;
-    bottom: 80px;
-    left: 200px;
-    margin-left: 250px;
-    color: white;
-    text-align: left;
-    font-family:'Times New Roman', Times, serif ;
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-  }
-  
-  .hero-title {
-    font-size: 90px;
-    font-weight: 700;
-    transform: rotate(15deg);
-    margin: 0;
-  }
-  
-  .hero-subtitle {
-    font-size: 22px;
-    letter-spacing: 4px;
-    margin-top: 2px;
-    transform: rotate(15deg);
-  }
-  
-  
-  .discover-btn {
-    position: absolute;
-    bottom: 80px;
-    right: 100px;
-    padding: 12px 40px;
-    border-radius: 30px;
-    border: 1px solid white;
-    background: transparent;
-    color: white;
-    font-size: 14px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .discover-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
-  .navbar-toggler-icon {
-    padding-top: 50px;
-    padding-left: 20px;
-    filter: invert(1);
-  }
-  
+.menu-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.nav-text {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.nav-logo {
+  height: 50px;
+}
+
+/* thin white line */
+.nav-line {
+  width: 90%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.7);
+  margin: 90px auto 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+/* ---------------- HERO SECTION ---------------- */
+
+.hero {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+.hero-text {
+  position: absolute;
+  bottom: 80px;
+  left: 10px;
+  margin-left: 150px;
+  color: white;
+  text-align: left;
+  font-family: 'Times New Roman', Times, serif;
+
+}
+
+.hero-title {
+  font-size: 90px;
+  font-weight: 700;
+  /* transform: rotate(15deg); */
+  margin: 0;
+}
+
+.hero-subtitle {
+  font-size: 22px;
+  letter-spacing: 4px;
+  margin-top: 2px;
+  /* transform: rotate(15deg); */
+}
+
+
+.discover-btn {
+  position: absolute;
+  bottom: 80px;
+  right: 100px;
+  padding: 12px 40px;
+  border-radius: 30px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.discover-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-toggler-icon {
+  padding-top: 50px;
+  padding-left: 20px;
+  filter: invert(1);
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  margin: 90px;
+}
+
+.flex h4 {
+  padding-top: 20px;
+
+}
+
+.flex button {
+  border-radius: 30px;
+  border: 1px solid black;
+  background: black;
+  color: white;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 120px;
+}
+
+.flex button img {
+  gap: 2px;
+}
+
+#offcanvasNavbar {
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  width: 320px;
+
+
+}
+
+#blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.4);
+
+  z-index: 15;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.offcanvas {
+  background: transparent !important;
+
+}
+
+.brand {
+  display: flex;
+  justify-content: space-between;
+  margin: 90px;
+  margin-top: 200px;
+  right: 100px;
+}
+
+.Third {
+  margin-top: 150px;
+}
+
+.header {
+  margin-left: 90px;
+  margin-top: 290px;
+
+}
+
+.cards {
+
+  margin: 150px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.thirdlast {
+  display: flex;
+  justify-content: space-between;
+  margin: 350px;
+}
+
+.sidelist {
+  color: white;
+  list-style-type: none;
+}
+
+.heroine {
+  width: 100%;
+  height: 100vh;
+  background-image: url("./assets/OffCar.png");
+  /* place image in src folder */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  font-family: "Comic Sans MS", cursive;
+}
+
+.heroine-text {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  color: Black;
+}
+
+.heroine-text h1 {
+  font-size: 60px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.heroine-text p {
+  font-size: 28px;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+.rentu-button {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+
+  background: black;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 30px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  transition: 0.3s ease;
+}
+
+.rentu-button:hover {
+  opacity: 0.8;
+}
+
+.heroine-text h1 {
+  color: white;
+  padding-left: 300px;
+  padding-top: 150px;
+}
+
+.heroine-text p {
+  padding-left: 400px;
+}
+
+.family {
+  text-align: center;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  margin: 90px;
+  font-size: larger;
+
+}
+
+.foot ul {
+  list-style-type: none;
+
+}
+
+.top {
+  font-weight: bolder;
+
+}
+
+.last img {
+  width: 20px;
+}
