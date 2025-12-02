@@ -36,7 +36,7 @@ export default function Home() {
             <nav className="top-navbar">
                 <div id="blur-overlay"></div>
                 <div className="nav-left">
-                    <nav class="navbar fixed-top">
+                    <nav className="navbar fixed-top">
                         <div className="container-fluid">
                             <button
                                 className="navbar-toggler"
@@ -51,7 +51,7 @@ export default function Home() {
                             <div
                                 className="offcanvas offcanvas-start"
 
-                                tabindex="-1"
+                                tabIndex="-1"
                                 id="offcanvasNavbar"
                                 aria-labelledby="offcanvasNavbarLabel"
                             >
