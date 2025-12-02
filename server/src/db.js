@@ -1,9 +1,7 @@
-import pg from "pg";
-const {Pool} = pg;
+import { Sequelize } from "sequelize";
 
-const pool = new Pool({
-    user : "postgres",
-    host : "localhost",
-    database : "PixelPunch",
-    password : "Postgres"
+
+export const sequelize = new Sequelize("pixelpunch_db", "postgres", "postgres", {
+  host: "localhost",
+  dialect: "postgres",
 });
