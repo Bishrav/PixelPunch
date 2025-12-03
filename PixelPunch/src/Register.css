@@ -1,0 +1,17 @@
+.Sign input {
+    width: 290px;
+    height: 40px;
+
+}
+
+.down {
+
+    display: flex;
+    gap: 50px;
+}
+
+.logo-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
