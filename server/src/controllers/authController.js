@@ -1,7 +1,15 @@
 import { User } from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import passport from "passport";
 
+export const googleLogin = passport.authenticate("google", { scope: ["profile", "email"] });
+
+// Handle callback after Google login
+export const googleCallback = passport.authenticate("google", {
+  failureRedirect: "/login",
+  session: true, // Enable session
+});
 
 
 export const registerUser = async (req, res) => {
@@ -48,4 +56,19 @@ export const loginUser = async (req, res) => {
     console.error(err);
     res.status(500).json({ error: "Login failed" });
   }
+};
+export const redirectToDashboard = (req, res) => {
+  if (!req.user) {
+    return res.redirect("/login");
+  }
+  // You can pass user info to frontend if needed
+  res.redirect("http://localhost:3000/dashboard");
+};
+
+// Logout user
+export const logoutUser = (req, res) => {
+  req.logout((err) => {
+    if (err) return next(err);
+    res.redirect("/login");
+  });
 };
