@@ -1,5 +1,4 @@
 import "./Landing.css";
-import { useState } from "react";
 import Landing from "./assets/Landing.png";
 import Landing1 from "./assets/Landing1.png";
 import Left from "./assets/LandingLeft.png";
@@ -21,7 +20,7 @@ import New4 from "./assets/New4.png"
 import New5 from "./assets/New5.png"
 import New6 from "./assets/New6.png"
 import Branding from "./assets/Branding.png"
-import FlashTimer from "./FlashTimer.jsx";
+import FlashTimer from "./Components/FlashTimer.jsx";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer.jsx"
 
