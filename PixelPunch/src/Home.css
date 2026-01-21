@@ -1,15 +1,23 @@
 /* ---------------- NAVBAR ---------------- */
 .top-navbar {
-  position: absolute;
-  top: 20px;
+  position: fixed;
+  top: 0;
   width: 100%;
-  padding: 0 50px;
+  padding: 15px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 20;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
   color: white;
-  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .nav-left,
@@ -94,19 +102,24 @@
   position: absolute;
   bottom: 80px;
   right: 100px;
-  padding: 12px 40px;
-  border-radius: 30px;
-  border: 1px solid white;
-  background: transparent;
+  padding: 15px 45px;
+  font-size: 1rem;
+  font-weight: 700;
   color: white;
-  font-size: 14px;
-  letter-spacing: 2px;
+  background: linear-gradient(135deg, #ff8a00, #ff2d55);
+  border: none;
+  border-radius: 50px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 20px rgba(255, 45, 85, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 10;
 }
 
 .discover-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(255, 45, 85, 0.4);
 }
 
 .navbar-toggler-icon {
@@ -126,19 +139,29 @@
 
 }
 
-.flex button {
-  border-radius: 30px;
-  border: 1px solid black;
-  background: black;
+.flex button,
+.rentu-button {
+  padding: 12px 30px;
+  font-size: 0.9rem;
+  font-weight: 700;
   color: white;
-  font-weight: bolder;
+  background: linear-gradient(135deg, #ff8a00, #ff2d55);
+  border: none;
+  border-radius: 50px;
   cursor: pointer;
-  transition: 0.3s;
-  width: 120px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 15px rgba(255, 45, 85, 0.2);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
 }
 
-.flex button img {
-  gap: 2px;
+.flex button:hover,
+.rentu-button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 20px rgba(255, 45, 85, 0.3);
 }
 
 #offcanvasNavbar {
@@ -297,4 +320,112 @@
 
 .last img {
   width: 20px;
+}
+
+/* ---------------- RESPONSIVENESS ---------------- */
+
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 70px;
+  }
+
+  .hero-text {
+    margin-left: 50px;
+  }
+
+  .flex,
+  .brand,
+  .cards,
+  .thirdlast,
+  .foot {
+    margin: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-navbar {
+    padding: 0 20px;
+  }
+
+  .hero-title {
+    font-size: 50px;
+  }
+
+  .hero-text {
+    margin-left: 20px;
+    bottom: 120px;
+  }
+
+  .discover-btn {
+    right: 20px;
+    bottom: 40px;
+    padding: 10px 25px;
+  }
+
+  .flex,
+  .brand,
+  .cards,
+  .thirdlast,
+  .foot {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
+    gap: 30px;
+  }
+
+  .flex div,
+  .brand div,
+  .cards div,
+  .thirdlast div,
+  .foot div {
+    width: 100%;
+  }
+
+  .heroine-text {
+    left: 20px;
+    top: 20px;
+  }
+
+  .heroine-text h1 {
+    font-size: 40px;
+    padding-left: 0;
+    padding-top: 50px;
+  }
+
+  .heroine-text p {
+    font-size: 20px;
+    padding-left: 0;
+  }
+
+  .rentu-button {
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .header {
+    margin-left: 20px;
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  .nav-line {
+    margin-top: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 40px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  .nav-text {
+    display: none;
+    /* Hide dealers text on very small screens */
+  }
 }

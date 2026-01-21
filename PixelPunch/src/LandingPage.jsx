@@ -59,20 +59,26 @@ function LandingPage() {
 
                 {/* BRANDING IMAGES */}
                 <div className="branding">
-                    <img src={Left} alt="" />
-                    <div className="branding-txt1">
-                        <p>NEW TECHNOLOGY & BUILD</p>
-                        <button>Shop Now</button>
+                    <div>
+                        <img src={Left} alt="" />
+                        <div className="branding-txt1">
+                            <p>NEW TECHNOLOGY & BUILD</p>
+                            <button className="button">Shop Now</button>
+                        </div>
                     </div>
-                    <img src={Mid} alt="" />
-                    <div className="branding-txt2">
-                        <p>NEW TECHNOLOGY & BUILD</p>
-                        <button>Shop Now</button>
+                    <div>
+                        <img src={Mid} alt="" />
+                        <div className="branding-txt2">
+                            <p>NEW TECHNOLOGY & BUILD</p>
+                            <button className="button">Shop Now</button>
+                        </div>
                     </div>
-                    <img src={Right} alt="" />
-                    <div className="branding-txt3">
-                        <p>NEW TECHNOLOGY & BUILD</p>
-                        <button>Shop Now</button>
+                    <div>
+                        <img src={Right} alt="" />
+                        <div className="branding-txt3">
+                            <p>NEW TECHNOLOGY & BUILD</p>
+                            <button className="button">Shop Now</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,27 +117,26 @@ function LandingPage() {
             <div className="heros1">
                 <img className="heros1-bg" src={GreyBackground} alt="" />
                 <div className="Purchase">
-                    <img src={Purchase1} alt="" />
-                    <div className="Purchase-txt1">
-                        <p>NEW TECHNOLOGY & BUILD</p>
-
-                        <Radio groupId="purchase1" />
-
+                    <div className="purchase-item">
+                        <img src={Purchase1} alt="" />
+                        <div className="Purchase-txt1">
+                            <p>NEW TECHNOLOGY & BUILD</p>
+                            <Radio groupId="purchase1" />
+                        </div>
                     </div>
-                    <img src={Purchase2} alt="" />
-                    <div className="Purchase-txt2">
-                        <p>NEW TECHNOLOGY & BUILD</p>
-
-                        <Radio groupId="purchase2" />
-
+                    <div className="purchase-item">
+                        <img src={Purchase2} alt="" />
+                        <div className="Purchase-txt2">
+                            <p>NEW TECHNOLOGY & BUILD</p>
+                            <Radio groupId="purchase2" />
+                        </div>
                     </div>
-                    <img src={Purchase3} alt="" />
-                    <div className="Purchase-txt3">
-                        <p>NEW TECHNOLOGY & BUILD</p>
-
-
-                        <Radio groupId="purchase3" />
-
+                    <div className="purchase-item">
+                        <img src={Purchase3} alt="" />
+                        <div className="Purchase-txt3">
+                            <p>NEW TECHNOLOGY & BUILD</p>
+                            <Radio groupId="purchase3" />
+                        </div>
                     </div>
                 </div>
                 <div className="heros1-txt">
@@ -169,7 +174,7 @@ function LandingPage() {
                         <div className="div-txt">
                             <h1>Flash Deals</h1>
                             <p>Hurry up and get 25% discount </p>
-                            <button>shop now</button>
+                            <button className="button">shop now</button>
                             <FlashTimer />
                         </div>
 

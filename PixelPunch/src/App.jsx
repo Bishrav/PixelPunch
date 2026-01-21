@@ -5,6 +5,8 @@ import Login from './Login.jsx'
 import LandingPage from "./LandingPage.jsx";
 import Contemporary from "./Contemporary.jsx";
 import Dashboard from "./Dashboard.jsx"
+import Profile from "./Profile.jsx"
+import { PrivateRoute, PublicRoute } from "./Components/AuthRoutes.jsx";
 
 function App() {
     return (
@@ -12,10 +14,23 @@ function App() {
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/Home" element={<Home />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-                <Route path = "/Contemporary" element ={<Contemporary />} />
-                <Route path = "/Dashboard" element = {<Dashboard />} />
+                <Route
+                    path="/register"
+                    element={<PublicRoute><Register /></PublicRoute>}
+                />
+                <Route
+                    path="/login"
+                    element={<PublicRoute><Login /></PublicRoute>}
+                />
+                <Route path="/Contemporary" element={<Contemporary />} />
+                <Route
+                    path="/Dashboard"
+                    element={<PrivateRoute><Dashboard /></PrivateRoute>}
+                />
+                <Route
+                    path="/Profile"
+                    element={<PrivateRoute><Profile /></PrivateRoute>}
+                />
             </Routes>
         </Router>
     )

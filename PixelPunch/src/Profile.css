@@ -1,0 +1,99 @@
+.sidebar img {
+    border-radius: 50%;
+}
+
+.Profile {
+    background-color: black;
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+.ProfDiv {
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.ProfCon {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.profdis {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.ProfCon img {
+    width: 30px;
+    height: 25px;
+}
+
+.ProfContent {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: aliceblue;
+}
+
+.ProfCo {
+    background-color: #484848;
+    width: 90%;
+    max-width: 460px;
+    border-radius: 40px;
+    display: flex;
+    padding: 30px;
+    gap: 20px;
+    align-items: center;
+}
+
+.ProfCo img {
+    width: 80px;
+    height: 90px;
+}
+
+.Profdiv p {
+    text-align: center;
+    font-size: 30px;
+}
+
+.Profdiv {
+    flex: 1;
+}
+
+.ProfHead {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.arrange {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .ProfDiv {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ProfCo {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .Profdiv p {
+        font-size: 24px;
+        padding-right: 0;
+    }
+}

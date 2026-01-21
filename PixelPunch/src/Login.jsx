@@ -1,34 +1,33 @@
-import './Login.css'
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Auth from "./assets/videos/Login.mp4";
+import API from "./services/api.js";
 
 
 function Login() {
-
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     // const handleChange = e => {
     //     setData({ ...data, [e.target.name]: e.target.value });
     // };
     const handleLogin = async (e) => {
         e.preventDefault();
-        const res = await fetch("/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password })
-        });
-        const data = await res.json();
-        console.log(data);
+        try {
+            const { data } = await API.post("/auth/login", { email, password });
+            console.log(data);
 
-        if (data.token) {
-            localStorage.setItem("token", data.token)
-            alert("Logged in")
-
-        } else {
-            alert(data.error)
+            if (data.token) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
+                navigate("/Dashboard");
+            }
+        } catch (err) {
+            alert(err.response?.data?.error || "Login failed");
         }
     }
+
 
     const WrappedStyle = {
         minHeight: '100vh',
@@ -119,9 +118,9 @@ function Login() {
 
 
                         <input
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder='Enter the Username'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder='Enter the Email'
                             style={inputStyle}
                         />
 

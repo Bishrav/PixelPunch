@@ -1,5 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import API from "./services/api.js";
 import Login from "./assets/videos/Signup.mp4";
 import Google from "./assets/Google.png";
 import Github from './assets/Github.png'
@@ -11,6 +12,7 @@ function Register() {
         password: "",
         confirmPassword: "",
     });
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,17 +25,20 @@ function Register() {
             return;
         }
         try {
-            const res = await axios.post(
-                "http://localhost:5000/api/auth/register",
-                {
-                    username: form.username,
-                    email: form.email,
-                    password: form.password,
-                    confirmPassword: form.confirmPassword,
-                }
-            );
-            alert(res.data.message || "Registered successfully");
-            setForm({ username: "", email: "", password: "", confirmPassword: "" });
+            const { data } = await API.post("/auth/register", {
+                username: form.username,
+                email: form.email,
+                password: form.password,
+                confirmPassword: form.confirmPassword,
+            });
+            alert(data.message || "Registered successfully");
+            if (data.token) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
+                navigate("/Dashboard");
+            } else {
+                navigate("/login");
+            }
         } catch (err) {
             console.error(err);
             alert(err.response?.data?.error || "Registration failed");
