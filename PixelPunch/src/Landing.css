@@ -12,8 +12,8 @@ body {
     width: 100%;
 }
 
-/* NAVBAR */
-.navbar {
+/* LANDING PAGE SPECIFIC STYLES */
+.landing-page .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,7 +26,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.headbut button {
+.landing-page .headbut button {
     background-color: transparent;
     border: 2px solid #333;
     border-radius: 50px;
@@ -38,19 +38,19 @@ body {
     margin-left: 10px;
 }
 
-.headbut button:hover {
+.landing-page .headbut button:hover {
     background-color: #333;
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.nav-links {
+.landing-page .nav-links {
     display: flex;
     gap: 40px;
 }
 
-.nav-links h5 {
+.landing-page .nav-links h5 {
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
@@ -58,7 +58,7 @@ body {
     padding: 5px 0;
 }
 
-.nav-links h5::after {
+.landing-page .nav-links h5::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -69,7 +69,7 @@ body {
     transition: width 0.3s ease;
 }
 
-.nav-links h5:hover::after {
+.landing-page .nav-links h5:hover::after {
     width: 100%;
 }
 

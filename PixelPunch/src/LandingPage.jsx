@@ -21,29 +21,63 @@ import New5 from "./assets/New5.png"
 import New6 from "./assets/New6.png"
 import Branding from "./assets/Branding.png"
 import FlashTimer from "./Components/FlashTimer.jsx";
+import Footer from "./Footer.jsx";
 import { useNavigate } from "react-router-dom";
-import Footer from "./Footer.jsx"
+import { useAuth } from "./hooks/useAuth.js";
 
 function LandingPage() {
-    // const [rating1, setRating1] = useState(0);
-    // const [rating2, setRating2] = useState(0);
-    // const [rating3, setRating3] = useState(0);
     const navigate = useNavigate();
+    const { isAuthenticated, logout } = useAuth();
+
+    // Helper function to handle navigation with auth check
+    const handleNavigation = (path) => {
+        const token = localStorage.getItem("token");
+        const user = localStorage.getItem("user");
+        console.log("handleNavigation called:", {
+            path,
+            isAuthenticated,
+            hasToken: !!token,
+            hasUser: !!user,
+            token: token ? token.substring(0, 20) + "..." : null
+        });
+
+        if (isAuthenticated) {
+            console.log("User is authenticated, navigating to:", path);
+            navigate(path);
+        } else {
+            console.log("User NOT authenticated, redirecting to register");
+            navigate("/register");
+        }
+    };
+
+    console.log("LandingPage render - isAuthenticated:", isAuthenticated);
+
     return (
-        <>
+        <div className="landing-page">
             <div className="navbar">
-                <img src={Landing} alt="logo" />
-                <div className="headbut">
-                    <button onClick={() => navigate("/Login")}>Login</button>
-                    <button onClick={() => navigate("/Register")}>Signup</button>
-                </div>
+                <img src={Landing} alt="logo" onClick={() => navigate("/")} style={{ cursor: 'pointer' }} />
+
                 <div className="nav-links">
-                    <h5 onClick={() => navigate("/Home")}>Home</h5>
-                    <h5 onClick={() => navigate("/Register")}>About Us</h5>
-                    <h5 onClick={() => navigate("/Register")}>Car List</h5>
-                    <h5 onClick={() => navigate("/Register")}>Career</h5>
-                    <h5 onClick={() => navigate("/Register")}>Current Model</h5>
-                    <h5 onClick={() => navigate("/Register")}>Contemporary</h5>
+                    <h5 onClick={() => navigate("/Home")} style={{ cursor: 'pointer' }}>Home</h5>
+                    <h5 onClick={() => handleNavigation("/about-us")} style={{ cursor: 'pointer' }}>About Us</h5>
+                    <h5 onClick={() => handleNavigation("/car-list")} style={{ cursor: 'pointer' }}>Car List</h5>
+                    <h5 onClick={() => handleNavigation("/career")} style={{ cursor: 'pointer' }}>Career</h5>
+                    <h5 onClick={() => handleNavigation("/current-model")} style={{ cursor: 'pointer' }}>Current Model</h5>
+                    <h5 onClick={() => navigate("/Contemporary")} style={{ cursor: 'pointer' }}>Contemporary</h5>
+                </div>
+
+                <div className="headbut">
+                    {!isAuthenticated ? (
+                        <>
+                            <button onClick={() => navigate("/login")}>Login</button>
+                            <button onClick={() => navigate("/register")}>Signup</button>
+                        </>
+                    ) : (
+                        <>
+                            <button onClick={() => navigate("/Dashboard")}>Dashboard</button>
+                            <button onClick={logout}>Logout</button>
+                        </>
+                    )}
                 </div>
             </div>
 
@@ -185,7 +219,7 @@ function LandingPage() {
 
             </div>
             < Footer />
-        </>
+        </div>
     );
 }
 

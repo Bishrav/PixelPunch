@@ -6,6 +6,10 @@ import LandingPage from "./LandingPage.jsx";
 import Contemporary from "./Contemporary.jsx";
 import Dashboard from "./Dashboard.jsx"
 import Profile from "./Profile.jsx"
+import AboutUs from "./AboutUs.jsx"
+import CarList from "./CarList.jsx"
+import Career from "./Career.jsx"
+import CurrentModel from "./CurrentModel.jsx"
 import { PrivateRoute, PublicRoute } from "./Components/AuthRoutes.jsx";
 
 function App() {
@@ -30,6 +34,22 @@ function App() {
                 <Route
                     path="/Profile"
                     element={<PrivateRoute><Profile /></PrivateRoute>}
+                />
+                <Route
+                    path="/about-us"
+                    element={<PrivateRoute><AboutUs /></PrivateRoute>}
+                />
+                <Route
+                    path="/car-list"
+                    element={<PrivateRoute><CarList /></PrivateRoute>}
+                />
+                <Route
+                    path="/career"
+                    element={<PrivateRoute><Career /></PrivateRoute>}
+                />
+                <Route
+                    path="/current-model"
+                    element={<PrivateRoute><CurrentModel /></PrivateRoute>}
                 />
             </Routes>
         </Router>

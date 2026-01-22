@@ -28,18 +28,25 @@ import Customer from "./assets/Vector.png"
 import sheild from "./assets/shield.png"
 import Line from "./assets/Line.png"
 
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./hooks/useAuth.js";
+
 const cars = [Car1, Car2, Car3, Car4, Car5, Car6, Car7, Car8];
 const cars1 = [New1, New2, New3, New4, New5, New6, Car7, Car8];
 
 function Contemporary() {
+    const { isAuthenticated, logout } = useAuth();
+    const navigate = useNavigate();
+
     return (
         <section className="contemporary">
 
             {/* NAVBAR */}
             <nav className="navbar">
-                <img src={Logo} alt="Logo" className="logo" />
+                <img src={Logo} alt="Logo" className="logo" onClick={() => navigate("/")} style={{ cursor: 'pointer' }} />
 
                 <div className="nav-links">
+                    <span onClick={() => navigate("/Home")} style={{ cursor: 'pointer' }}>Home</span>
                     <span>Shop</span>
                     <span>Collections</span>
                     <span>Categories</span>
@@ -47,7 +54,36 @@ function Contemporary() {
                 </div>
 
                 <div className="nav-icons">
-                    <img src={Profile} alt="Profile" />
+                    {!isAuthenticated ? (
+                        <>
+                            <button onClick={() => navigate("/login")} style={{
+                                background: 'transparent',
+                                border: '1px solid black',
+                                padding: '5px 15px',
+                                borderRadius: '15px',
+                                cursor: 'pointer'
+                            }}>Login</button>
+                            <img src={Profile} alt="Profile" onClick={() => navigate("/register")} style={{ cursor: 'pointer' }} />
+                        </>
+                    ) : (
+                        <>
+                            <button onClick={() => navigate("/Dashboard")} style={{
+                                background: 'transparent',
+                                border: '1px solid black',
+                                padding: '5px 15px',
+                                borderRadius: '15px',
+                                cursor: 'pointer'
+                            }}>Dashboard</button>
+                            <button onClick={logout} style={{
+                                background: 'transparent',
+                                border: '1px solid black',
+                                padding: '5px 15px',
+                                borderRadius: '15px',
+                                cursor: 'pointer',
+                                marginLeft: '10px'
+                            }}>Logout</button>
+                        </>
+                    )}
                     <img src={Search} alt="Search" />
                     <img src={Cart} alt="Cart" />
                 </div>
@@ -121,16 +157,16 @@ function Contemporary() {
                 <Card />
                 <Card />
                 <Card />
-                
-                
-                
+
+
+
             </div>
             <footer>
                 <Footer />
             </footer>
-            
-            
-            
+
+
+
 
 
         </section>

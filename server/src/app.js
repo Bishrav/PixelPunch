@@ -5,6 +5,7 @@ import cors from "cors";
 import session from "express-session";
 import dotenv from "dotenv";
 import passport from "./config/passportConfig.js"; // <-- uses strategies
+import authMiddleware from "./middleware/authMiddleware.js";
 
 const app = express();
 
@@ -33,21 +34,17 @@ app.use(passport.session());
 app.use("/api/auth", authRoutes);
 
 // --- Optional route to get current user for dashboard ---
-app.get("/api/current-user", (req, res) => {
-    if (req.user) {
-        res.json(req.user);
-    } else {
-        res.json({ user: null });
-    }
+app.get("/api/me", authMiddleware, (req, res) => {
+    res.json({ user: req.user });
 });
 
 // --- Database connection and sync ---
 sequelize.authenticate()
-  .then(() => console.log("Database connected"))
-  .catch(err => console.error("Database connection error:", err));
+    .then(() => console.log("Database connected"))
+    .catch(err => console.error("Database connection error:", err));
 
 sequelize.sync()
-  .then(() => console.log("Database synced"));
+    .then(() => console.log("Database synced"));
 
 // --- Start server ---
 app.listen(5000, () => console.log("Server running on port 5000"));

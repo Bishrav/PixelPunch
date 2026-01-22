@@ -4,10 +4,12 @@ import Auth from "./assets/videos/Login.mp4";
 import API from "./services/api.js";
 
 
+import { useAuth } from "./hooks/useAuth.js";
+
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate();
+    const { login } = useAuth();
 
     // const handleChange = e => {
     //     setData({ ...data, [e.target.name]: e.target.value });
@@ -19,9 +21,7 @@ function Login() {
             console.log(data);
 
             if (data.token) {
-                localStorage.setItem("token", data.token);
-                localStorage.setItem("user", JSON.stringify(data.user));
-                navigate("/Dashboard");
+                login(data.user, data.token);
             }
         } catch (err) {
             alert(err.response?.data?.error || "Login failed");

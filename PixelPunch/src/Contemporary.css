@@ -30,23 +30,84 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 30px 80px;
+  padding: 25px 60px;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .nav-links {
   display: flex;
-  gap: 40px;
-  font-size: 18px;
+  gap: 35px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.nav-links span {
+  cursor: pointer;
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 5px 0;
+}
+
+.nav-links span::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.3s ease;
+}
+
+.nav-links span:hover::after {
+  width: 100%;
 }
 
 .nav-icons {
   display: flex;
-  gap: 25px;
+  gap: 20px;
+  align-items: center;
 }
 
 .nav-icons img {
-  width: 26px;
+  width: 24px;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nav-icons img:hover {
+  transform: scale(1.1);
+}
+
+.nav-icons button {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-left: 5px;
+}
+
+.nav-icons button:hover {
+  background: white;
+  color: black;
+  transform: translateY(-2px);
 }
 
 /* HERO */
@@ -162,7 +223,6 @@ body {
   /* Position it inside the input */
 }
 
-/* CUSTOM CARE */
 .customcare {
   display: flex;
   justify-content: space-around;
@@ -170,6 +230,57 @@ body {
   padding: 0 40px;
   flex-wrap: wrap;
   gap: 40px;
+}
+
+/* COLLECTION ANIMATION */
+.collection-wrapper {
+  overflow: hidden;
+  width: 100%;
+  margin: 60px 0;
+}
+
+.collection-track {
+  display: flex;
+  gap: 30px;
+  animation: scroll-left 30s linear infinite;
+  width: max-content;
+}
+
+.collection-track img {
+  width: 250px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.collection-track img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+/* SELLER BUTTON */
+.seller {
+  display: block;
+  margin: 80px auto 60px;
+}
+
+/* HEADING */
+.heading {
+  text-align: center;
+  margin: 100px 0 60px;
+  font-size: 48px;
+}
+
+/* CARD SECTION */
+.card-section {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+  margin-bottom: 80px;
 }
 
 /* KEYFRAMES */

@@ -1,5 +1,11 @@
 .sidebar img {
     border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.sidebar img:hover {
+    transform: scale(1.05);
 }
 
 .Profile {
@@ -9,10 +15,38 @@
     padding-bottom: 50px;
 }
 
+/* Profile Navigation */
+.profile-nav {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
 .ProfDiv {
-    padding-top: 80px;
+    padding-top: 40px;
     display: flex;
     justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
 }
 
 .ProfCon {
@@ -20,12 +54,27 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ProfCon h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
 }
 
 .profdis {
     display: flex;
     gap: 20px;
     align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.profdis:hover {
+    transform: translateX(5px);
 }
 
 .ProfCon img {
@@ -42,14 +91,23 @@
 }
 
 .ProfCo {
-    background-color: #484848;
+    background: linear-gradient(135deg, #484848 0%, #3a3a3a 100%);
     width: 90%;
     max-width: 460px;
-    border-radius: 40px;
+    border-radius: 25px;
     display: flex;
     padding: 30px;
     gap: 20px;
     align-items: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ProfCo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #525252 0%, #404040 100%);
 }
 
 .ProfCo img {
@@ -60,6 +118,16 @@
 .Profdiv p {
     text-align: center;
     font-size: 30px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.Profdiv h1 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
 }
 
 .Profdiv {
@@ -95,5 +163,13 @@
     .Profdiv p {
         font-size: 24px;
         padding-right: 0;
+    }
+
+    .profile-nav {
+        flex-direction: column;
+    }
+
+    .nav-btn {
+        width: 100%;
     }
 }

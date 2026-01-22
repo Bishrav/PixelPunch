@@ -14,11 +14,26 @@ import Social1 from "./assets/Social1.png"
 import Social2 from "./assets/Social2.png"
 import Social4 from "./assets/Social4.png"
 
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./hooks/useAuth.js";
 
 export default function Home() {
+    const navigate = useNavigate();
+    const { isAuthenticated, logout } = useAuth();
+
+    // Helper function to handle navigation with auth check
+    const handleNavigation = (path) => {
+        if (isAuthenticated) {
+            navigate(path);
+        } else {
+            navigate("/register");
+        }
+    };
+
     useEffect(() => {
         const offcanvas = document.getElementById("offcanvasNavbar");
         const overlay = document.getElementById("blur-overlay");
+        if (!offcanvas || !overlay) return;
 
         offcanvas.addEventListener("shown.bs.offcanvas", () => {
             overlay.style.opacity = "1";
@@ -64,57 +79,52 @@ export default function Home() {
                                     ></button>
                                 </div>
                                 <div className="offcanvas-body">
-                                    <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                                        <li className="nav-item">
-                                            <ul className="dropdown-menu">
-                                                <li>
-                                                    <a
-                                                        className="dropdown-item"
-                                                        href="#"
-                                                    >
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        className="dropdown-item"
-                                                        href="#"
-                                                    >
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li></li>
-                                                <li>
-                                                    <a
-                                                        className="dropdown-item"
-                                                        href="#"
-                                                    >
-                                                        Something else here
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
                                     <ul className="sidelist">
-                                        <li>
+                                        <li onClick={() => navigate("/")}>
+                                            <h3>Landing Page</h3>
+                                        </li>
+                                        <li onClick={() => navigate("/Home")}>
                                             <h3>Home</h3>
                                         </li>
-                                        <li>
-                                            <h3>About us</h3>
-                                        </li>
-                                        <li>
-                                            <h3>Car list</h3>
-                                        </li>
-                                        <li>
-                                            <h3>Career</h3>
-                                        </li>
-                                        <li>
-                                            <h3>Current Model</h3>
-                                        </li>
-                                        <li>
+                                        <li onClick={() => navigate("/Contemporary")}>
                                             <h3>Contemporary</h3>
                                         </li>
-
+                                        {isAuthenticated && (
+                                            <>
+                                                <li onClick={() => navigate("/Dashboard")}>
+                                                    <h3>Dashboard</h3>
+                                                </li>
+                                                <li onClick={() => navigate("/Profile")}>
+                                                    <h3>Profile</h3>
+                                                </li>
+                                            </>
+                                        )}
+                                        <li onClick={() => handleNavigation("/about-us")} style={{ cursor: 'pointer' }}>
+                                            <h3>About Us</h3>
+                                        </li>
+                                        <li onClick={() => handleNavigation("/car-list")} style={{ cursor: 'pointer' }}>
+                                            <h3>Car List</h3>
+                                        </li>
+                                        <li onClick={() => handleNavigation("/career")} style={{ cursor: 'pointer' }}>
+                                            <h3>Career</h3>
+                                        </li>
+                                        <li onClick={() => handleNavigation("/current-model")} style={{ cursor: 'pointer' }}>
+                                            <h3>Current Model</h3>
+                                        </li>
+                                        {!isAuthenticated ? (
+                                            <>
+                                                <li onClick={() => navigate("/login")}>
+                                                    <h3>Login</h3>
+                                                </li>
+                                                <li onClick={() => navigate("/register")}>
+                                                    <h3>Signup</h3>
+                                                </li>
+                                            </>
+                                        ) : (
+                                            <li onClick={logout}>
+                                                <h3>Logout</h3>
+                                            </li>
+                                        )}
                                     </ul>
 
 
@@ -125,11 +135,15 @@ export default function Home() {
                 </div>
 
                 <div className="nav-center">
-                    <img src={Logo} alt="logo" className="nav-logo" />
+                    <img src={Logo} alt="logo" className="nav-logo" onClick={() => navigate("/")} style={{ cursor: 'pointer' }} />
                 </div>
 
                 <div className="nav-right">
-                    <span className="nav-text">DEALERS</span>
+                    {isAuthenticated ? (
+                        <span className="nav-text" onClick={() => navigate("/Dashboard")} style={{ cursor: 'pointer' }}>DASHBOARD</span>
+                    ) : (
+                        <span className="nav-text">DEALERS</span>
+                    )}
                 </div>
             </nav>
 

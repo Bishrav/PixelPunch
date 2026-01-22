@@ -6,12 +6,22 @@ import Mark from "./assets/mark.png"
 import Car from "./assets/ProfCar.png"
 import Logo from "./assets/Zap.png"
 import Package from "./assets/Package.png"
-function Profile() {
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
-    return (
+import { useAuth } from "./hooks/useAuth.js"
+import { useNavigate } from "react-router-dom"
 
+function Profile() {
+    const { user } = useAuth();
+    const navigate = useNavigate();
+
+    return (
         <>
             <section className="Profile">
+                <div className="profile-nav">
+                    <button onClick={() => navigate("/Dashboard")} className="nav-btn">← Back to Dashboard</button>
+                    <button onClick={() => navigate("/Home")} className="nav-btn">Home</button>
+                    <button onClick={() => navigate("/Contemporary")} className="nav-btn">Browse Cars</button>
+                </div>
+
                 <div className="ProfDiv">
                     <div className="sidebar">
                         <img src={ProfileCar} alt="" />
@@ -29,15 +39,7 @@ function Profile() {
                         </div>
                         <div className="profdis">
                             <img src={Mark} alt="" />
-                            <p>Kathmandu,Nepal</p>
-                        </div>
-                    </div>
-                    <hr />
-                    <div>
-
-                        <div>
-
-
+                            <p>Kathmandu, Nepal</p>
                         </div>
                     </div>
                 </div>
@@ -52,11 +54,10 @@ function Profile() {
                                 <p>2</p>
                             </div>
                         </div>
-
                     </div>
+
                     <div className="arrange">
                         <div className="ProfContent">
-
                             <div className="ProfCo">
                                 <img src={Logo} alt="" />
                                 <div className="Profdiv">
@@ -64,34 +65,29 @@ function Profile() {
                                     <p>3</p>
                                 </div>
                             </div>
-
                         </div>
-                        <div className="ProfContent">
 
+                        <div className="ProfContent">
                             <div className="ProfCo">
                                 <img src={Package} alt="" />
                                 <div className="Profdiv">
-                                    <h1>Car Bought</h1>
-                                    <p>2</p>
+                                    <h1>Test Drives</h1>
+                                    <p>5</p>
                                 </div>
                             </div>
-
                         </div>
 
                         <div className="ProfContent">
-
                             <div className="ProfCo">
                                 <img src={Car} alt="" />
                                 <div className="Profdiv">
-                                    <h1>Car Bought</h1>
-                                    <p>2</p>
+                                    <h1>Favorites</h1>
+                                    <p>8</p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </section>
         </>
     )

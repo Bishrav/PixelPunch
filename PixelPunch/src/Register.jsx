@@ -5,6 +5,8 @@ import Login from "./assets/videos/Signup.mp4";
 import Google from "./assets/Google.png";
 import Github from './assets/Github.png'
 
+import { useAuth } from "./hooks/useAuth.js";
+
 function Register() {
     const [form, setForm] = useState({
         username: "",
@@ -12,6 +14,7 @@ function Register() {
         password: "",
         confirmPassword: "",
     });
+    const { login } = useAuth();
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -33,9 +36,7 @@ function Register() {
             });
             alert(data.message || "Registered successfully");
             if (data.token) {
-                localStorage.setItem("token", data.token);
-                localStorage.setItem("user", JSON.stringify(data.user));
-                navigate("/Dashboard");
+                login(data.user, data.token);
             } else {
                 navigate("/login");
             }
