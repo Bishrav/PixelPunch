@@ -3,10 +3,16 @@ import { Navigate } from "react-router-dom";
 
 export const PrivateRoute = ({ children }) => {
     const token = localStorage.getItem("token");
-    return token ? children : <Navigate to="/login" />;
+    const params = new URLSearchParams(window.location.search);
+    const urlToken = params.get("token");
+
+    return (token || urlToken) ? children : <Navigate to="/login" />;
 };
 
 export const PublicRoute = ({ children }) => {
     const token = localStorage.getItem("token");
-    return token ? <Navigate to="/Dashboard" /> : children;
+    const params = new URLSearchParams(window.location.search);
+    const urlToken = params.get("token");
+
+    return (token || urlToken) ? <Navigate to="/Dashboard" /> : children;
 };

@@ -17,41 +17,18 @@ import Social4 from "./assets/Social4.png"
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth.js";
 
+import Sidebar, { SidebarOffcanvas } from "./Components/Sidebar.jsx";
+
 export default function Home() {
     const navigate = useNavigate();
     const { isAuthenticated, logout } = useAuth();
 
-    // Helper function to handle navigation with auth check
-    const handleNavigation = (path) => {
-        if (isAuthenticated) {
-            navigate(path);
-        } else {
-            navigate("/register");
-        }
-    };
-
-    useEffect(() => {
-        const offcanvas = document.getElementById("offcanvasNavbar");
-        const overlay = document.getElementById("blur-overlay");
-        if (!offcanvas || !overlay) return;
-
-        offcanvas.addEventListener("shown.bs.offcanvas", () => {
-            overlay.style.opacity = "1";
-            overlay.style.pointerEvents = "auto";
-        });
-
-        offcanvas.addEventListener("hidden.bs.offcanvas", () => {
-            overlay.style.opacity = "0";
-            overlay.style.pointerEvents = "none";
-        });
-    }, []);
-
     return (
         <>
+            <Sidebar />
             <nav className="top-navbar">
-                <div id="blur-overlay"></div>
                 <div className="nav-left">
-                    <nav className="navbar fixed-top">
+                    <nav className="navbar fixed-top" style={{ padding: '20px 50px', background: 'transparent' }}>
                         <div className="container-fluid">
                             <button
                                 className="navbar-toggler"
@@ -60,89 +37,24 @@ export default function Home() {
                                 data-bs-target="#offcanvasNavbar"
                                 aria-controls="offcanvasNavbar"
                                 aria-label="Toggle navigation"
+                                style={{ border: 'none', background: 'transparent', padding: '0', boxShadow: 'none' }}
                             >
-                                <span className="navbar-toggler-icon"></span>
+                                <span className="navbar-toggler-icon" style={{ width: '35px', height: '35px' }}></span>
                             </button>
-                            <div
-                                className="offcanvas offcanvas-start"
-
-                                tabIndex="-1"
-                                id="offcanvasNavbar"
-                                aria-labelledby="offcanvasNavbarLabel"
-                            >
-                                <div className="offcanvas-header">
-                                    <button
-                                        type="button"
-                                        className="btn-close"
-                                        data-bs-dismiss="offcanvas"
-                                        aria-label="Close"
-                                    ></button>
-                                </div>
-                                <div className="offcanvas-body">
-                                    <ul className="sidelist">
-                                        <li onClick={() => navigate("/")}>
-                                            <h3>Landing Page</h3>
-                                        </li>
-                                        <li onClick={() => navigate("/Home")}>
-                                            <h3>Home</h3>
-                                        </li>
-                                        <li onClick={() => navigate("/Contemporary")}>
-                                            <h3>Contemporary</h3>
-                                        </li>
-                                        {isAuthenticated && (
-                                            <>
-                                                <li onClick={() => navigate("/Dashboard")}>
-                                                    <h3>Dashboard</h3>
-                                                </li>
-                                                <li onClick={() => navigate("/Profile")}>
-                                                    <h3>Profile</h3>
-                                                </li>
-                                            </>
-                                        )}
-                                        <li onClick={() => handleNavigation("/about-us")} style={{ cursor: 'pointer' }}>
-                                            <h3>About Us</h3>
-                                        </li>
-                                        <li onClick={() => handleNavigation("/car-list")} style={{ cursor: 'pointer' }}>
-                                            <h3>Car List</h3>
-                                        </li>
-                                        <li onClick={() => handleNavigation("/career")} style={{ cursor: 'pointer' }}>
-                                            <h3>Career</h3>
-                                        </li>
-                                        <li onClick={() => handleNavigation("/current-model")} style={{ cursor: 'pointer' }}>
-                                            <h3>Current Model</h3>
-                                        </li>
-                                        {!isAuthenticated ? (
-                                            <>
-                                                <li onClick={() => navigate("/login")}>
-                                                    <h3>Login</h3>
-                                                </li>
-                                                <li onClick={() => navigate("/register")}>
-                                                    <h3>Signup</h3>
-                                                </li>
-                                            </>
-                                        ) : (
-                                            <li onClick={logout}>
-                                                <h3>Logout</h3>
-                                            </li>
-                                        )}
-                                    </ul>
-
-
-                                </div>
-                            </div>
+                            <SidebarOffcanvas />
                         </div>
                     </nav>
                 </div>
 
                 <div className="nav-center">
-                    <img src={Logo} alt="logo" className="nav-logo" onClick={() => navigate("/")} style={{ cursor: 'pointer' }} />
+                    <img src={Logo} alt="logo" className="nav-logo" onClick={() => navigate("/")} style={{ cursor: 'pointer', height: '100px', transition: 'height 0.3s ease' }} />
                 </div>
 
                 <div className="nav-right">
                     {isAuthenticated ? (
                         <span className="nav-text" onClick={() => navigate("/Dashboard")} style={{ cursor: 'pointer' }}>DASHBOARD</span>
                     ) : (
-                        <span className="nav-text">DEALERS</span>
+                        <span className="nav-text" onClick={() => navigate("/login")} style={{ cursor: 'pointer' }}>LOGIN</span>
                     )}
                 </div>
             </nav>

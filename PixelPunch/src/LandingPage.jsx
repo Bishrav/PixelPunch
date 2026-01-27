@@ -25,44 +25,38 @@ import Footer from "./Footer.jsx";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth.js";
 
+import Sidebar, { SidebarOffcanvas } from "./Components/Sidebar.jsx";
+
 function LandingPage() {
     const navigate = useNavigate();
     const { isAuthenticated, logout } = useAuth();
 
-    // Helper function to handle navigation with auth check
-    const handleNavigation = (path) => {
-        const token = localStorage.getItem("token");
-        const user = localStorage.getItem("user");
-        console.log("handleNavigation called:", {
-            path,
-            isAuthenticated,
-            hasToken: !!token,
-            hasUser: !!user,
-            token: token ? token.substring(0, 20) + "..." : null
-        });
-
-        if (isAuthenticated) {
-            console.log("User is authenticated, navigating to:", path);
-            navigate(path);
-        } else {
-            console.log("User NOT authenticated, redirecting to register");
-            navigate("/register");
-        }
-    };
-
-    console.log("LandingPage render - isAuthenticated:", isAuthenticated);
-
     return (
         <div className="landing-page">
+            <Sidebar />
             <div className="navbar">
-                <img src={Landing} alt="logo" onClick={() => navigate("/")} style={{ cursor: 'pointer' }} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
+                    <button
+                        className="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar"
+                        aria-controls="offcanvasNavbar"
+                        aria-label="Toggle navigation"
+                        style={{ border: 'none', background: 'transparent', padding: '0', boxShadow: 'none' }}
+                    >
+                        <span className="navbar-toggler-icon" style={{ filter: 'invert(1)', width: '30px', height: '30px' }}></span>
+                    </button>
+                    <img src={Landing} alt="logo" onClick={() => navigate("/")} style={{ cursor: 'pointer', height: '80px', transition: 'height 0.3s ease' }} />
+                    <SidebarOffcanvas />
+                </div>
 
                 <div className="nav-links">
                     <h5 onClick={() => navigate("/Home")} style={{ cursor: 'pointer' }}>Home</h5>
-                    <h5 onClick={() => handleNavigation("/about-us")} style={{ cursor: 'pointer' }}>About Us</h5>
-                    <h5 onClick={() => handleNavigation("/car-list")} style={{ cursor: 'pointer' }}>Car List</h5>
-                    <h5 onClick={() => handleNavigation("/career")} style={{ cursor: 'pointer' }}>Career</h5>
-                    <h5 onClick={() => handleNavigation("/current-model")} style={{ cursor: 'pointer' }}>Current Model</h5>
+                    <h5 onClick={() => navigate("/about-us")} style={{ cursor: 'pointer' }}>About Us</h5>
+                    <h5 onClick={() => navigate("/car-list")} style={{ cursor: 'pointer' }}>Car List</h5>
+                    <h5 onClick={() => navigate("/career")} style={{ cursor: 'pointer' }}>Career</h5>
+                    <h5 onClick={() => navigate("/current-model")} style={{ cursor: 'pointer' }}>Current Model</h5>
                     <h5 onClick={() => navigate("/Contemporary")} style={{ cursor: 'pointer' }}>Contemporary</h5>
                 </div>
 
