@@ -4,7 +4,27 @@ import { useNavigate } from "react-router-dom";
 
 import lamborghini from "./assets/lamborghini.png";
 import MahindraThar from "./assets/MahindraThar.jpg";
-import porsche from "./assets/Porsche.png";
+import porsche from "./assets/porsche.png";
+
+/* ===== Chart.js imports ===== */
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+
+/* ===== Register chart components ===== */
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Tooltip,
+  Legend
+);
 
 function Dashboard() {
   const { user, logout } = useAuth();
@@ -13,6 +33,36 @@ function Dashboard() {
   const handleLogout = () => {
     logout();
     navigate("/Login");
+  };
+
+  /* ===== Chart Data ===== */
+  const salesData = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    datasets: [
+      {
+        label: "Cars Sold",
+        data: [12, 18, 15, 22, 19, 27],
+        backgroundColor: "#3b82f6",
+        borderRadius: 6,
+      },
+    ],
+  };
+
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+    },
+    scales: {
+      y: {
+        ticks: { color: "#9ca3af" },
+        grid: { color: "rgba(255,255,255,0.05)" },
+      },
+      x: {
+        ticks: { color: "#9ca3af" },
+        grid: { display: false },
+      },
+    },
   };
 
   return (
@@ -60,14 +110,14 @@ function Dashboard() {
         </div>
       </section>
 
-      {/* Main Section */}
+      {/* Main Layout */}
       <div className="dashboard-main">
 
-        {/* SALES OVERVIEW (EMPTY BOX FIXED) */}
+        {/* Sales Overview */}
         <div className="main-graph">
           <h3>Sales Overview</h3>
           <p className="graph-subtitle">
-            Monthly car sales and revenue summary
+            Monthly car sales performance
           </p>
 
           <div className="overview-stats">
@@ -77,7 +127,7 @@ function Dashboard() {
             </div>
             <div>
               <span>Best Month</span>
-              <strong>December</strong>
+              <strong>June</strong>
             </div>
             <div>
               <span>Growth</span>
@@ -85,12 +135,12 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="graph-placeholder">
-            Chart / analytics will appear here
+          <div className="chart-container">
+            <Bar data={salesData} options={chartOptions} />
           </div>
         </div>
 
-        {/* Top Selling Cars */}
+        {/* Top Cars */}
         <div className="top-cars-panel">
           <div className="panel-header">
             <h3>Top Selling Cars</h3>
