@@ -25,7 +25,7 @@ function CarList() {
     e.preventDefault();
     const carToAdd = {
       ...newCar,
-      id: cars.length ? Math.max(...cars.map(c => c.id)) + 1 : 1
+      id: cars.length ? Math.max(...cars.map(c => c.id)) + 1 : 1,
     };
     setCars([...cars, carToAdd]);
     setNewCar({ name: "", type: "", price: "" });
@@ -40,84 +40,97 @@ function CarList() {
     <div className="page-container">
       <Sidebar />
 
-      <nav className="page-nav">
-        <div className="nav-left">
-          <button className="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <button onClick={() => navigate("/")} className="nav-btn">← Home</button>
-          <SidebarOffcanvas />
-        </div>
-
-        {isAuthenticated && (
-          <button onClick={() => navigate("/Dashboard")} className="nav-btn">
-            Dashboard
-          </button>
-        )}
-      </nav>
-
-      <div className="page-content">
-        <div className="page-header">
-          <div>
-            <h1>Car List</h1>
-            <p>Explore and manage our premium collection of vehicles</p>
+      <div className="main-content">
+        <nav className="page-nav">
+          <div className="nav-left">
+            <button
+              className="nav-btn"
+              onClick={() => navigate("/")}
+            >
+              ← Home
+            </button>
+            <SidebarOffcanvas />
           </div>
 
-          <button onClick={() => setIsAdding(!isAdding)} className="add-btn">
-            {isAdding ? "Cancel" : "Add New Car"}
-          </button>
-        </div>
+          <h1 className="nav-title">Car List</h1>
 
-        {isAdding && (
-          <form onSubmit={handleAddCar} className="add-form">
+          {isAuthenticated && (
+            <button
+              className="nav-btn"
+              onClick={() => navigate("/Dashboard")}
+            >
+              Dashboard
+            </button>
+          )}
+        </nav>
+
+        <div className="page-content">
+          <div className="page-header">
             <div>
-              <label>Car Name</label>
-              <input
-                required
-                value={newCar.name}
-                onChange={e => setNewCar({ ...newCar, name: e.target.value })}
-              />
+              <p>Explore and manage our premium collection of vehicles</p>
             </div>
 
-            <div>
-              <label>Type</label>
-              <input
-                required
-                value={newCar.type}
-                onChange={e => setNewCar({ ...newCar, type: e.target.value })}
-              />
-            </div>
+            <button
+              onClick={() => setIsAdding(!isAdding)}
+              className="add-btn"
+            >
+              {isAdding ? "Cancel" : "Add New Car"}
+            </button>
+          </div>
 
-            <div>
-              <label>Price</label>
-              <input
-                required
-                value={newCar.price}
-                onChange={e => setNewCar({ ...newCar, price: e.target.value })}
-              />
-            </div>
-
-            <button type="submit" className="save-btn">Save Car</button>
-          </form>
-        )}
-
-        <div className="car-grid">
-          {cars.map(car => (
-            <div key={car.id} className="car-card">
-              <span className="car-id">ID: {car.id}</span>
-              <h3>{car.name}</h3>
-              <p className="car-type">{car.type}</p>
-              <p className="car-price">{car.price}</p>
-
-              <div className="car-card-buttons">
-                <button className="view-btn">Details</button>
-                <button className="delete-btn" onClick={() => handleDeleteCar(car.id)}>
-                  Delete
-                </button>
+          {isAdding && (
+            <form onSubmit={handleAddCar} className="add-form">
+              <div>
+                <label>Car Name</label>
+                <input
+                  required
+                  value={newCar.name}
+                  onChange={e => setNewCar({ ...newCar, name: e.target.value })}
+                />
               </div>
-            </div>
-          ))}
+
+              <div>
+                <label>Type</label>
+                <input
+                  required
+                  value={newCar.type}
+                  onChange={e => setNewCar({ ...newCar, type: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label>Price</label>
+                <input
+                  required
+                  value={newCar.price}
+                  onChange={e => setNewCar({ ...newCar, price: e.target.value })}
+                />
+              </div>
+
+              <button type="submit" className="save-btn">Save Car</button>
+            </form>
+          )}
+
+          <div className="car-grid">
+            {cars.map(car => (
+              <div key={car.id} className="car-card">
+                <span className="car-id">ID: {car.id}</span>
+                <h3>{car.name}</h3>
+                <p className="car-type">{car.type}</p>
+                <p className="car-price">{car.price}</p>
+
+                <div className="car-card-buttons">
+                  <button className="view-btn">Details</button>
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDeleteCar(car.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
