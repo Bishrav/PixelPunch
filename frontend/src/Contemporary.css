@@ -1,0 +1,473 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* html, #root {
+  background: black;
+  color: white;
+  width: 100%;
+} */
+
+/* MAIN */
+.contemporary {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: black;
+  color: white;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 60px;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 35px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.nav-links span {
+  cursor: pointer;
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 5px 0;
+}
+
+.nav-links span::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.3s ease;
+}
+
+.nav-links span:hover::after {
+  width: 100%;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-icons img {
+  width: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nav-icons img:hover {
+  transform: scale(1.1);
+}
+
+.nav-icons button {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-left: 5px;
+}
+
+.nav-icons button:hover {
+  background: white;
+  color: black;
+  transform: translateY(-2px);
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  margin-top: 40px;
+}
+
+.hero-img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: cover;
+}
+
+.hero-text {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+}
+
+.hero-text h1 {
+  font-size: 64px;
+  font-weight: 800;
+}
+
+/* BRAND */
+.brand {
+  padding: 100px 80px;
+  text-align: center;
+}
+
+.brand h1 {
+  font-size: 80px;
+}
+
+.brand button,
+.seller {
+  padding: 15px 45px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #ff8a00, #ff2d55);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 20px rgba(255, 45, 85, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.brand button:hover,
+.seller:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(255, 45, 85, 0.4);
+}
+
+/* MORE SECTION */
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  padding: 50px 20px;
+}
+
+.more img {
+  width: 30%;
+  min-width: 250px;
+  object-fit: contain;
+}
+
+.more-txt {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  font-size: 30px;
+  flex-wrap: wrap;
+}
+
+/* HAVETO (Mailing list) */
+.haveto {
+  margin: 100px auto;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.haveto input {
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 40px;
+  width: 100%;
+  max-width: 480px;
+  height: 70px;
+  color: whitesmoke;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.haveto button {
+  background-color: blue;
+  border-radius: 45px;
+  width: 50px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-left: -60px;
+  /* Position it inside the input */
+}
+
+.customcare {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 100px;
+  padding: 0 40px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* COLLECTION ANIMATION */
+.collection-wrapper {
+  overflow: hidden;
+  width: 100%;
+  margin: 60px 0;
+}
+
+.collection-track {
+  display: flex;
+  gap: 30px;
+  animation: scroll-left 30s linear infinite;
+  width: max-content;
+}
+
+.collection-track img {
+  width: 250px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.collection-track img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+/* SELLER BUTTON */
+.seller {
+  display: block;
+  margin: 80px auto 60px;
+}
+
+/* HEADING */
+.heading {
+  text-align: center;
+  margin: 100px 0 60px;
+  font-size: 48px;
+}
+
+/* CARD SECTION */
+.card-section {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+
+/* KEYFRAMES */
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 20px 40px;
+  }
+
+  .nav-links {
+    gap: 25px;
+    font-size: 16px;
+  }
+
+  .nav-icons img {
+    width: 22px;
+  }
+
+  .hero-text h1 {
+    font-size: 48px;
+  }
+
+  .brand h1 {
+    font-size: 60px;
+  }
+
+  .brand button {
+    padding: 20px 50px;
+    font-size: 24px;
+  }
+
+  .collection-track img {
+    width: 200px;
+  }
+
+  .more img {
+    width: 350px;
+  }
+
+  .more-txt {
+    gap: 400px;
+    font-size: 24px;
+  }
+
+  .haveto h1 {
+    font-size: 32px;
+  }
+
+  .haveto input {
+    width: 350px;
+    height: 60px;
+  }
+
+  .haveto button {
+    width: 45px;
+    height: 40px;
+  }
+
+  .customcare {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .card-section {
+    gap: 80px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .hero-text h1 {
+    font-size: 36px;
+  }
+
+  .brand h1 {
+    font-size: 48px;
+  }
+
+  .brand button {
+    padding: 18px 40px;
+    font-size: 20px;
+  }
+
+  .collection-track img {
+    width: 160px;
+  }
+
+  .more {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .more img {
+    width: 280px;
+  }
+
+  .more-txt {
+    gap: 0;
+    flex-direction: column;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .haveto h1 {
+    font-size: 24px;
+  }
+
+  .haveto input {
+    width: 80%;
+    height: 50px;
+  }
+
+  .haveto button {
+    width: 40px;
+    height: 35px;
+  }
+
+  .customcare {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .card-section {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 28px;
+  }
+
+  .brand h1 {
+    font-size: 36px;
+  }
+
+  .brand button {
+    padding: 15px 30px;
+    font-size: 18px;
+  }
+
+  .collection-track img {
+    width: 140px;
+  }
+
+  .more img {
+    width: 240px;
+  }
+
+  .more-txt {
+    font-size: 18px;
+  }
+
+  .haveto h1 {
+    font-size: 20px;
+  }
+
+  .haveto input {
+    width: 90%;
+    height: 45px;
+  }
+
+  .haveto button {
+    width: 35px;
+    height: 30px;
+  }
+
+  .card-section {
+    gap: 20px;
+  }
+}
