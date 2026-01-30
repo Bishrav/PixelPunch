@@ -40,7 +40,6 @@ const Offers = () => {
         try {
             const token = localStorage.getItem("token");
             // Log activity to Dashboard
-            const token = localStorage.getItem("token");
 
             // Call the claim endpoint which handles:
             // 1. Creating a Sold car record (updates Dashboard stats)
