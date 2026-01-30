@@ -40,12 +40,18 @@ const Offers = () => {
         try {
             const token = localStorage.getItem("token");
             // Log activity to Dashboard
-            await axios.post("http://localhost:5000/api/activity/log", {
-                action: "Claimed Offer",
-                details: `Claimed ${selectedOffer.title} for ${selectedOffer.car}`
-            }, {
+            const token = localStorage.getItem("token");
+
+            // Call the claim endpoint which handles:
+            // 1. Creating a Sold car record (updates Dashboard stats)
+            // 2. Deleting the offer (removes from list)
+            // 3. Logging activity
+            await axios.post(`http://localhost:5000/api/offers/claim/${selectedOffer.id}`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
+
+            // Update local state to remove the offer immediately without refetch
+            setOffers(prev => prev.filter(o => o.id !== selectedOffer.id));
 
             setShowModal(false);
             const toast = document.createElement("div");
