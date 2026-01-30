@@ -5,7 +5,7 @@ import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-// GET /api/offers - Get all offers
+
 router.get('/', async (req, res) => {
     try {
         const offers = await Offer.findAll({ order: [['createdAt', 'DESC']] });
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// POST /api/offers - Create new offer
+
 router.post('/', authMiddleware, async (req, res) => {
     const { title, type, discount, car, img, expires } = req.body;
 
@@ -25,7 +25,7 @@ router.post('/', authMiddleware, async (req, res) => {
             ownerId: req.user.id
         });
 
-        // Log Activity
+
         await Activity.create({
             userId: req.user.id,
             action: 'Created Offer',

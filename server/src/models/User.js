@@ -1,6 +1,6 @@
-// models/User.js
+
 import { DataTypes } from "sequelize";
-import { sequelize } from "../db.js"; // your DB connection
+import { sequelize } from "../db.js";
 
 export const User = sequelize.define("User", {
   username: { type: DataTypes.STRING, allowNull: false },
@@ -11,5 +11,5 @@ export const User = sequelize.define("User", {
   role: { type: DataTypes.STRING, defaultValue: "user" },
   title: { type: DataTypes.STRING, allowNull: true },
 }, {
-  timestamps: true, // adds createdAt and updatedAt automatically
+  timestamps: true,
 });

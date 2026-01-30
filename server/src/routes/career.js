@@ -3,31 +3,29 @@ import nodemailer from "nodemailer";
 
 const router = express.Router();
 
-// POST /api/career/apply
+
 router.post("/apply", async (req, res) => {
     const { name, email, phone, salary, resume, coverLetter, position } = req.body;
 
-    // Basic validation
+
     if (!name || !email || !resume) {
         return res.status(400).json({ message: "Please provide Name, Email, and Resume Link." });
     }
 
     try {
-        // Create Transporter
-        // NOTE: Replace these placeholders with your actual SMTP credentials
-        // For Gmail, you might need an App Password.
+
         const transporter = nodemailer.createTransport({
-            service: "gmail", // or your SMTP host
+            service: "gmail",
             auth: {
-                user: "your-email@gmail.com", // REPLACE WITH REAL EMAIL
-                pass: "your-app-password"      // REPLACE WITH REAL PASSWORD
+                user: "your-email@gmail.com",
+                pass: "your-app-password"
             }
         });
 
-        // Email Content
+
         const mailOptions = {
             from: `"${name}" <${email}>`,
-            to: "your-email@gmail.com", // Where you want to receive applications
+            to: "your-email@gmail.com",
             subject: `New Application: ${position} - ${name}`,
             html: `
                 <h2>New Career Application</h2>
@@ -43,7 +41,7 @@ router.post("/apply", async (req, res) => {
             `
         };
 
-        // Send Email
+
         await transporter.sendMail(mailOptions);
 
         res.status(200).json({ message: "Application submitted successfully!" });

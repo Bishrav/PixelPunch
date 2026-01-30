@@ -3,11 +3,11 @@ import { User } from "../models/User.js";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as GitHubStrategy } from "passport-github2";
 
-// Serialize user to session
+
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));
 
-// --- Google Strategy ---
+
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -20,7 +20,7 @@ passport.use(new GoogleStrategy({
         user = await User.create({
           username: profile.displayName,
           email: profile.emails[0].value,
-          password: "", // No password for OAuth users
+          password: "",
           profileImage: profile.photos[0]?.value,
           bio: "Joined via Google"
         });
@@ -32,7 +32,7 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-// --- GitHub Strategy ---
+
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,

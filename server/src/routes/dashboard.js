@@ -5,28 +5,28 @@ import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-// GET /api/dashboard/stats - Get user stats and activity
+
 router.get('/stats', authMiddleware, async (req, res) => {
     try {
         const userId = req.user.id;
 
-        // Stats
+
         const carsListed = await Car.count({ where: { ownerId: userId, status: 'Available' } });
         const carsSold = await Car.count({ where: { ownerId: userId, status: 'Sold' } });
-        const carsBought = 0; // Placeholder until transaction logic
+        const carsBought = 0;
 
-        // Calculate Revenue (Sum of price of sold cars)
+
         const soldCars = await Car.findAll({ where: { ownerId: userId, status: 'Sold' }, attributes: ['price'] });
         const revenue = soldCars.reduce((sum, car) => sum + car.price, 0);
 
-        // Recent Activity
+
         const recentActivity = await Activity.findAll({
             where: { userId },
             order: [['createdAt', 'DESC']],
             limit: 5
         });
 
-        // My Listings (All cars owned by user)
+
         const myListings = await Car.findAll({
             where: { ownerId: userId },
             order: [['createdAt', 'DESC']]

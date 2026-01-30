@@ -10,29 +10,29 @@ import { sequelize } from "./db.js";
 import cors from "cors";
 import session from "express-session";
 import dotenv from "dotenv";
-import passport from "./config/passportConfig.js"; // <-- uses strategies
+import passport from "./config/passportConfig.js";
 import authMiddleware from "./middleware/authMiddleware.js";
 
 const app = express();
 
 dotenv.config();
-// CORS configuration
+
 app.use(cors({
     origin: "http://localhost:5173",
-    credentials: true // allow cookies to be sent
+    credentials: true
 }));
 
 app.use(express.json());
 
-// --- Session setup for passport ---
+
 app.use(session({
     secret: "your_secret_key",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } // true only for HTTPS
+    cookie: { secure: false }
 }));
 
-// --- Passport middleware ---
+
 app.use(passport.initialize());
 app.use(passport.session());
 

@@ -159,7 +159,7 @@ const ProductDetails = () => {
                 <div className="modal-overlay">
                     <div className="checkout-modal">
                         <h2>Secure Checkout</h2>
-                        <form onSubmit={handleProceedPayment}>
+                        <form onSubmit={handleProceedPayment} noValidate>
                             <div className="form-row">
                                 <div className="form-group">
                                     <label>Full Name</label>
@@ -180,7 +180,7 @@ const ProductDetails = () => {
                                 <h3>Payment Details</h3>
                                 <div className="form-group">
                                     <label>Card Number</label>
-                                    <input name="cardNumber" required placeholder="0000 0000 0000 0000" maxLength="19" value={checkoutData.cardNumber} onChange={handleInputChange} />
+                                    <input name="cardNumber" autoComplete="off" placeholder="0000 0000 0000 0000" maxLength="19" value={checkoutData.cardNumber} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group">

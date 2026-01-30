@@ -4,7 +4,7 @@ import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// GET current user profile
+
 router.get("/", authMiddleware, async (req, res) => {
     try {
         const user = await User.findByPk(req.user.id, {
@@ -18,7 +18,7 @@ router.get("/", authMiddleware, async (req, res) => {
     }
 });
 
-// PUT update profile
+
 router.put("/", authMiddleware, async (req, res) => {
     try {
         const { bio, title, profileImage, username } = req.body;
@@ -33,7 +33,7 @@ router.put("/", authMiddleware, async (req, res) => {
 
         await user.save();
 
-        // Return updated user without password
+
         const updatedUser = user.toJSON();
         delete updatedUser.password;
 
