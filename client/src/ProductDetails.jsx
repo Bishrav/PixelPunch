@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Sidebar from './Components/Sidebar.jsx';
 import Footer from './Footer.jsx';
-import Car1 from "./assets/Collection1.png"; // Fallback
+import Car1 from "./assets/Collection1.png";
 import "./ProductDetails.css";
 import { useAuth } from './hooks/useAuth.js';
 
@@ -16,7 +16,7 @@ const ProductDetails = () => {
     const [showModal, setShowModal] = useState(false);
     const [processing, setProcessing] = useState(false);
 
-    // Checkout Form
+
     const [checkoutData, setCheckoutData] = useState({
         name: "",
         username: "",
@@ -32,7 +32,7 @@ const ProductDetails = () => {
                 const res = await axios.get(`http://localhost:5000/api/cars/${id}`);
                 setCar(res.data);
 
-                // Pre-fill username if logged in
+
                 if (user) {
                     setCheckoutData(prev => ({ ...prev, username: user.username }));
                 }
@@ -63,7 +63,7 @@ const ProductDetails = () => {
         e.preventDefault();
         setProcessing(true);
 
-        // Simulate payment processing delay
+
         setTimeout(async () => {
             try {
                 const token = localStorage.getItem("token");
@@ -74,7 +74,7 @@ const ProductDetails = () => {
                 setProcessing(false);
                 setShowModal(false);
 
-                // Payment Done Toast/Alert
+
                 const toast = document.createElement("div");
                 toast.className = "payment-toast";
                 toast.innerText = "Payment Successful! 🎉";
@@ -104,13 +104,13 @@ const ProductDetails = () => {
                 <button className="back-link" onClick={() => navigate("/shop")}>← Back to Shop</button>
 
                 <div className="product-grid">
-                    {/* LEFT: Image */}
+
                     <div className="product-image-section">
                         <img src={car.img || Car1} alt={car.name} className="main-product-img" />
                         <div className="image-glow"></div>
                     </div>
 
-                    {/* RIGHT: Details */}
+
                     <div className="product-info-section">
                         <span className="brand-tag">{car.brand}</span>
                         <h1 className="product-title">{car.name}</h1>
@@ -154,7 +154,7 @@ const ProductDetails = () => {
                 </div>
             </div>
 
-            {/* CHECKOUT MODAL */}
+
             {showModal && (
                 <div className="modal-overlay">
                     <div className="checkout-modal">

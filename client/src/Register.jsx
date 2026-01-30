@@ -45,15 +45,6 @@ function Register() {
             alert(data.message || "Registered successfully");
             if (data.token) {
                 login(data.user, data.token);
-                // navigate("/"); // Handled by login function which goes to /Dashboard usually, but User asked for Landing Page.
-                // Actually useAuth login goes to /Dashboard. Let's redirect to landing page if user wants.
-                // But Login function in useAuth redirects to Dashboard.
-                // User said "after signing up redirect to the landing page again"
-                // If I use login(), it goes to Dashboard.
-                // I should probably manually navigate or update useAuth. 
-                // Let's stick to standard behavior for now: Login -> Dashboard is standard. 
-                // User said "redirect to landing page". 
-                // Let's assume they mean "/" (Home).
                 navigate("/");
             } else {
                 navigate("/login");
@@ -64,7 +55,7 @@ function Register() {
         }
     };
 
-    // Styles
+
     const wrapperStyle = {
         minHeight: '100vh',
         width: '100%',
@@ -72,7 +63,7 @@ function Register() {
         padding: 0,
         position: 'relative',
         overflow: 'hidden',
-        background: '#000',        // fallback if video doesn't load
+        background: '#000',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -90,7 +81,7 @@ function Register() {
 
     const containerStyle = {
         position: 'relative',
-        zIndex: 1,           // in front of video
+        zIndex: 1,
         width: '750px',
         marginTop: '20px',
         paddingLeft: '80px',
@@ -104,7 +95,7 @@ function Register() {
         display: 'flex',
         flexDirection: 'column',
         gap: '50px',
-        // color: 'white',
+
         marginRight: "70%",
     };
 
@@ -135,7 +126,7 @@ function Register() {
     };
     return (
         <div style={wrapperStyle}>
-            {/* full-screen video background */}
+
             <video style={videoStyle} src={Login} autoPlay muted loop />
 
             <div style={containerStyle}>
@@ -190,7 +181,7 @@ function Register() {
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        gap: '20px',    // space between images
+                        gap: '20px',
                         marginTop: '20px'
                     }}>
                         <a href="http://localhost:5000/api/auth/google">

@@ -4,7 +4,7 @@ import Sidebar from './Components/Sidebar.jsx';
 import Footer from './Footer.jsx';
 import axios from 'axios';
 
-// Fallback images if URL is missing
+
 import Car1 from "./assets/Collection1.png";
 
 const Shop = () => {
@@ -15,14 +15,14 @@ const Shop = () => {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Dynamic Background
+
     useEffect(() => {
         const originalBackground = document.body.style.backgroundColor;
         document.body.style.backgroundColor = '#050505';
         return () => { document.body.style.backgroundColor = originalBackground; };
     }, []);
 
-    // Fetch Cars from Backend
+
     useEffect(() => {
         const fetchCars = async () => {
             try {
@@ -37,7 +37,7 @@ const Shop = () => {
         fetchCars();
     }, []);
 
-    // Filter Logic
+
     const filteredCars = cars.filter(car => {
         const matchesSearch = car.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             car.brand.toLowerCase().includes(searchTerm.toLowerCase());
@@ -91,12 +91,12 @@ const Shop = () => {
                     />
                 </div>
 
-                {/* Sell Your Car button removed as per request - moved to Dashboard */}
+
                 <div></div>
             </nav>
 
             <div style={{ display: 'flex', minHeight: 'calc(100vh - 80px)' }}>
-                {/* FILTER SIDEBAR */}
+
                 <div style={{
                     width: '300px',
                     padding: '30px',
@@ -118,7 +118,7 @@ const Shop = () => {
                     </div>
                 </div>
 
-                {/* MAIN GRID */}
+
                 <div style={{ flex: 1, padding: '40px', background: '#111' }}>
                     {loading ? (
                         <div style={{ color: 'white', textAlign: 'center', marginTop: '50px' }}>Loading Inventory...</div>
@@ -149,7 +149,7 @@ const Shop = () => {
                                         <p style={{ color: '#888', fontSize: '0.9rem', margin: '0 0 10px 0', fontFamily: 'sans-serif' }}>{car.type}</p>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                             <span style={{ color: '#00ff88', fontWeight: 'bold' }}>Rs. {car.price.toLocaleString()}</span>
-                                            {/* Delete button removed - only in Dashboard */}
+
                                         </div>
                                     </div>
                                 </div>

@@ -16,7 +16,7 @@ const router = express.Router();
 
 
 
-//Routes
+
 router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 router.get("/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
@@ -28,13 +28,7 @@ router.get("/google/callback",
       email: req.user.email,
       profileImage: req.user.profileImage
     }));
-    // Redirecting to login so useAuth can catch it, but user wants "every page accessible".
-    // useAuth checks token on mount. Login page wraps check. 
-    // We can redirect to /Dashboard directly IF useAuth is global.
-    // useAuth reads from window.location.search in useEffect.
-    // If we redirect to /Dashboard?token=..., Dashboard doesn't parse it.
-    // Login.jsx (or useAuth hook) parses it. 
-    // Best to keep /login as the "Callback Handler" that pivots to Dashboard.
+
     res.redirect(`http://localhost:5173/login?token=${token}&user=${userString}`);
   }
 );
