@@ -20,6 +20,20 @@ const Shop = () => {
     const [priceFilter, setPriceFilter] = useState("All");
     const [isAdding, setIsAdding] = useState(false);
 
+    // Dynamic Background for Shop Page
+    useEffect(() => {
+        // Save original background
+        const originalBackground = document.body.style.backgroundColor;
+
+        // Set to black
+        document.body.style.backgroundColor = '#050505';
+
+        // Cleanup on unmount
+        return () => {
+            document.body.style.backgroundColor = originalBackground;
+        };
+    }, []);
+
     // Initial Dummy Data (40-50 items)
     const initialCars = [
         { id: 1, name: "Lamborghini Aventador", brand: "Lamborghini", price: 450000, img: Car1, type: "Supercar" },

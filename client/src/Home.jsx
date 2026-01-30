@@ -12,7 +12,13 @@ import Card2 from "./assets/Card2.png"
 import Social from "./assets/Social.png"
 import Social1 from "./assets/Social1.png"
 import Social2 from "./assets/Social2.png"
+
 import Social4 from "./assets/Social4.png"
+import New1 from "./assets/New1.png"
+import New2 from "./assets/New2.png"
+import New3 from "./assets/New3.png"
+import Electric1 from "./assets/Purchase1.png"
+import Electric2 from "./assets/Purchase2.png"
 
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth.js";
@@ -22,6 +28,22 @@ import Sidebar from "./Components/Sidebar.jsx";
 export default function Home() {
     const navigate = useNavigate();
     const { isAuthenticated, logout } = useAuth();
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.fade-in-section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <>
@@ -74,7 +96,7 @@ export default function Home() {
 
                 {/* TEXT */}
                 <div className="hero-text">
-                    <h1 className="hero-title">PIXEL</h1>
+                    <h1 className="hero-title" title="PIXEL">PIXEL</h1>
                     <p className="hero-subtitle">PUNCH</p>
                 </div>
 
@@ -83,8 +105,8 @@ export default function Home() {
             </div>
 
             <div>
-                <div className="flex">
-                    <div>
+                <div className="flex fade-in-section">
+                    <div className="tilt-card">
                         <img src={Car1} alt="Car1" />
                         <h4>Range Rover</h4>
                         <p>Go anywhere, composed everywhere.</p>
@@ -92,14 +114,14 @@ export default function Home() {
                             Explore <img src={Icon} alt="" /></button>
 
                     </div>
-                    <div>
+                    <div className="tilt-card">
                         <img src={Car1} alt="Car1" />
                         <h4>Range Rover</h4>
                         <p>Go anywhere, composed everywhere.</p>
                         <button>
                             Explore <img src={Icon} alt="" /></button>
                     </div>
-                    <div>
+                    <div className="tilt-card">
                         <img src={Car1} alt="Car1" />
                         <h4>Range Rover</h4>
                         <p>Go anywhere, composed everywhere.</p>
@@ -108,46 +130,47 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="brand">
-                    <div className="ad">
+                    <div className="ad tilt-card fade-in-section">
                         <img src={Brand1} alt="" />
                         <h4>Flexible Rental</h4>
-                        <p>Cancle or change most bookings for free up to 48 hours before pick-up</p>
+                        <p>Cancel or change most bookings for free up to 48 hours before pick-up</p>
                     </div>
-                    <div className="ad">
+                    <div className="ad tilt-card fade-in-section">
                         <img src={Brand2} alt="" />
                         <h4>No Hidden Fees </h4>
                         <p>Know exactly what you are doing</p>
                     </div>
-                    <div className="ad">
+                    <div className="ad tilt-card fade-in-section">
                         <img src={Brand3} alt="" />
                         <h4>5 Millions+ reviews </h4>
                         <p>By review, verified customers</p>
                     </div>
                 </div>
-            </div>
-            <div className="Third">
+            </div >
+
+            <div className="Third fade-in-section">
                 <div className="header">
-                    <h1>UNEVIL NEW PERSPECTIVE</h1>
-                    <p>Coninue your journey with us</p>
+                    <h1>UNVEIL NEW PERSPECTIVE</h1>
+                    <p>Continue your journey with us</p>
                 </div>
                 <div className="cards">
-                    <div className="carousel">
+                    <div className="carousel tilt-card">
                         <img src={Card1} alt="" />
                         <h2>TEST DRIVE RANGE ROVER</h2>
                         <h3>Choose a time and location convenient to you </h3>
                         <p style={{ padding: "50px" }}> BOOK YOUR TEST DRIVE </p>
                     </div>
-                    <div className="carousel">
+                    <div className="carousel tilt-card">
                         <img src={Card2} alt="" />
                         <h2>SHOP RANGE ROVER </h2>
                         <h3>Configure and order your new Range Rover online </h3>
                         <p style={{ padding: "50px" }}>BUILD AND ORDER </p>
-                        {/* style={{ fontWeight: "bolder" }} */}
                     </div>
                 </div>
             </div >
-            <h1 className="family">Know Our Family</h1>
-            <div className="thirdlast">
+
+            <h1 className="family fade-in-section" style={{ marginTop: '100px' }}>Know Our Family</h1>
+            <div className="thirdlast fade-in-section">
 
                 <div>
                     <p>Number of people Connected.</p>

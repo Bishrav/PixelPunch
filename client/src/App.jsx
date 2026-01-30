@@ -8,7 +8,7 @@ import Dashboard from "./Dashboard.jsx"
 import Profile from "./Profile.jsx"
 import Projects from "./Projects.jsx"
 import AboutUs from "./AboutUs.jsx"
-import CarList from "./CarList.jsx"
+
 import Career from "./Career.jsx"
 import CurrentModel from "./CurrentModel.jsx"
 import Offers from "./Offers.jsx"
@@ -47,10 +47,7 @@ function App() {
                     path="/about-us"
                     element={<PrivateRoute><AboutUs /></PrivateRoute>}
                 />
-                <Route
-                    path="/car-list"
-                    element={<PrivateRoute><CarList /></PrivateRoute>}
-                />
+
                 <Route
                     path="/career"
                     element={<PrivateRoute><Career /></PrivateRoute>}
