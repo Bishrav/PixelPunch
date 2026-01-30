@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import "./Contemporary.css";
 import Logo from "./assets/ContLogo.png";
 import Profile from "./assets/Profile.png";

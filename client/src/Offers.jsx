@@ -1,3 +1,9 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Sidebar from './Components/Sidebar.jsx';
+import Footer from './Footer.jsx';
+import axios from 'axios';
+import Car2 from "./assets/Collection2.png"; // Fallback image
 import CheckoutModal from './Components/CheckoutModal.jsx';
 import { useAuth } from './hooks/useAuth.js';
 
