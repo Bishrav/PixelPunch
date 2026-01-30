@@ -29,7 +29,7 @@ function AboutUs() {
     }, []);
 
     return (
-        <div className="about-container page-container">
+        <div className="about-container">
             <Sidebar />
             <nav className="about-nav">
                 <h2 className="nav-logo" onClick={() => navigate("/")}>PIXEL PUNCH</h2>
@@ -124,8 +124,6 @@ function AboutUs() {
                     <span className="stat-label">Concierge Support</span>
                 </div>
             </section>
-
-            <div className="page-content"></div>
 
             <Footer />
         </div>

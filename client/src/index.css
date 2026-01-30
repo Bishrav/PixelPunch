@@ -6,42 +6,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Sticky Footer Wrapper */
-.main-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* Main Content Area in Pages (optional if needed) */
-/* The layout logic: Wrapper is flex-col, content must grow.
-   Each page component should ideally flex-grow: 1 or handle their own layout. 
-   Given components are separate, let's verify if they have internal structure.
-   But App.jsx wrapper makes sure the Router container is 100vh.
-   Each PAGE (e.g. LandingPage) typically contains a Navbar and Footer internally. 
-   WAIT. If each page has its OWN Footer, simply wrapping App.jsx won't work automatically 
-   UNLESS the page itself is flex-col.
-   Looking at Shop.jsx, it has <Sidebar>, content, and <Footer>.
-   Shop.jsx: minHeight: 100vh. It handles it.
-   Let's check other pages if they have issues.
-   
-   However, common "Sticky Footer" usually implies global layout.
-   Since pages invoke <Footer /> manually, the PAGE component needs to be flex-col with content expanding.
-   App.jsx wrapper helps if the page component doesn't take 100% height.
-   
-   Let's add a utility class .page-container to index.css that pages can reuse if they want sticky footer.
-*/
-
-.page-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.page-content {
-    flex: 1;
-}
-
 ::-webkit-scrollbar {
     width: 8px;
 }

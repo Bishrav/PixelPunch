@@ -40,7 +40,7 @@ const Collections = () => {
     }, []);
 
     return (
-        <div className="product-page page-container" style={{ backgroundColor: 'black', minHeight: '100vh', color: 'white', overflowX: 'hidden' }}>
+        <div style={{ backgroundColor: 'black', minHeight: '100vh', color: 'white', overflowX: 'hidden' }}>
 
             <nav style={{
                 padding: '20px 40px',
@@ -301,8 +301,6 @@ const Collections = () => {
                     }
                 `}
             </style>
-
-            <div className="page-content"></div>
 
             <Footer />
         </div >

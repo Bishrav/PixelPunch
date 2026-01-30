@@ -83,7 +83,7 @@ function Career() {
     }, []);
 
     return (
-        <div className="career-container page-container">
+        <div className="career-container">
             <Sidebar />
             <nav className="career-nav">
                 <h2 className="nav-logo" onClick={() => navigate("/")}>PIXEL PUNCH</h2>
@@ -192,7 +192,6 @@ function Career() {
                     ))}
                 </div>
             </section>
-            <div className="page-content"></div>
 
             <Footer />
         </div>

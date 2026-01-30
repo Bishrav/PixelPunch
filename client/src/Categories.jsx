@@ -19,7 +19,7 @@ function Categories() {
     ];
 
     return (
-        <div className="categories-container page-container">
+        <div className="categories-container">
             <Sidebar />
 
             <nav className="cat-nav">
@@ -93,7 +93,6 @@ function Categories() {
                     </p>
                 </div>
             </section>
-            <div className="page-content"></div>
 
             <Footer />
         </div>

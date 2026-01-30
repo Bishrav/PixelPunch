@@ -54,7 +54,7 @@ const Shop = () => {
     const uniqueBrands = ["All", ...new Set(cars.map(car => car.brand))];
 
     return (
-        <div className="page-container" style={{ backgroundColor: '#111', minHeight: '100vh', color: 'white', fontFamily: '"Orbitron", sans-serif' }}>
+        <div style={{ backgroundColor: '#111', minHeight: '100vh', color: 'white', fontFamily: '"Orbitron", sans-serif' }}>
             <Sidebar />
 
             <nav style={{
@@ -95,7 +95,7 @@ const Shop = () => {
                 <div></div>
             </nav>
 
-            <div className="page-content" style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', minHeight: 'calc(100vh - 80px)' }}>
 
                 <div style={{
                     width: '300px',

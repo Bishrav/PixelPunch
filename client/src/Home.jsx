@@ -46,7 +46,7 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="page-container">
+        <>
             {/* Sidebar Overlay Removed - handled by Bootstrap or not needed */}
             <nav className="top-navbar">
                 <div className="nav-left">
@@ -241,8 +241,9 @@ export default function Home() {
                     </div>
 
                 </div>
-            </footer>
 
-        </div>
+            </footer >
+
+        </>
     );
 }

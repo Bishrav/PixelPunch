@@ -22,7 +22,7 @@ const Offers = () => {
     }, []);
 
     return (
-        <div className="page-container" style={{ backgroundColor: 'black', minHeight: '100vh', color: 'white', overflowX: 'hidden' }}>
+        <div style={{ backgroundColor: 'black', minHeight: '100vh', color: 'white', overflowX: 'hidden' }}>
             <Sidebar />
 
             {/* Navbar ... */}
