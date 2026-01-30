@@ -17,7 +17,7 @@ import Social4 from "./assets/Social4.png"
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth.js";
 
-import Sidebar, { SidebarOffcanvas } from "./Components/Sidebar.jsx";
+import Sidebar from "./Components/Sidebar.jsx";
 
 export default function Home() {
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function Home() {
 
     return (
         <>
-            <Sidebar />
+            {/* Sidebar Overlay Removed - handled by Bootstrap or not needed */}
             <nav className="top-navbar">
                 <div className="nav-left">
                     <nav className="navbar fixed-top" style={{ padding: '20px 50px', background: 'transparent' }}>
@@ -41,7 +41,7 @@ export default function Home() {
                             >
                                 <span className="navbar-toggler-icon" style={{ width: '35px', height: '35px' }}></span>
                             </button>
-                            <SidebarOffcanvas />
+                            <Sidebar />
                         </div>
                     </nav>
                 </div>

@@ -25,7 +25,7 @@ import Footer from "./Footer.jsx";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth.js";
 
-import Sidebar, { SidebarOffcanvas } from "./Components/Sidebar.jsx";
+import Sidebar from "./Components/Sidebar.jsx";
 
 function LandingPage() {
     const navigate = useNavigate();
@@ -33,7 +33,7 @@ function LandingPage() {
 
     return (
         <div className="landing-page">
-            <Sidebar />
+            {/* <Sidebar /> Removed overlay */}
             <div className="navbar">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
                     <button
@@ -48,7 +48,7 @@ function LandingPage() {
                         <span className="navbar-toggler-icon" style={{ filter: 'invert(1)', width: '30px', height: '30px' }}></span>
                     </button>
                     <img src={Landing} alt="logo" onClick={() => navigate("/")} style={{ cursor: 'pointer', height: '80px', transition: 'height 0.3s ease' }} />
-                    <SidebarOffcanvas />
+                    <Sidebar />
                 </div>
 
                 <div className="nav-links">

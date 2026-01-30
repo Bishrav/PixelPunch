@@ -11,6 +11,9 @@ import AboutUs from "./AboutUs.jsx"
 import CarList from "./CarList.jsx"
 import Career from "./Career.jsx"
 import CurrentModel from "./CurrentModel.jsx"
+import Offers from "./Offers.jsx"
+import Collections from "./Collections.jsx"
+import Shop from "./Shop.jsx"
 import { PrivateRoute, PublicRoute } from "./Components/AuthRoutes.jsx";
 
 function App() {
@@ -56,6 +59,9 @@ function App() {
                     path="/current-model"
                     element={<PrivateRoute><CurrentModel /></PrivateRoute>}
                 />
+                <Route path="/offers" element={<Offers />} />
+                <Route path="/collections" element={<Collections />} />
+                <Route path="/shop" element={<Shop />} />
             </Routes>
         </Router>
     )
