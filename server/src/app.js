@@ -2,6 +2,7 @@ import express from "express";
 import authRoutes from "./routes/auth.js";
 import profileRoutes from "./routes/profile.js";
 import projectRoutes from "./routes/projects.js";
+import careerRoutes from "./routes/career.js";
 import { sequelize } from "./db.js";
 import cors from "cors";
 import session from "express-session";
@@ -36,6 +37,7 @@ app.use(passport.session());
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api/career", careerRoutes);
 
 // --- Optional route to get current user for dashboard ---
 app.get("/api/me", authMiddleware, (req, res) => {
