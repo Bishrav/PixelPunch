@@ -26,7 +26,7 @@ export const useAuth = () => {
                     url.searchParams.delete("user");
                     window.history.replaceState({}, document.title, url.pathname + url.search);
 
-                    navigate("/Dashboard");
+                    navigate("/");
                 } catch (e) {
                     console.error("Error parsing user from URL", e);
                 }
@@ -56,7 +56,7 @@ export const useAuth = () => {
         localStorage.setItem("user", JSON.stringify(userData));
         setToken(userToken);
         setUser(userData);
-        navigate("/Dashboard");
+        navigate("/");
     };
 
     const logout = () => {

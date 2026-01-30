@@ -196,3 +196,37 @@
     height: 80px;
   }
 }
+
+/* Form Styles */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.edit-input, .edit-textarea {
+  background: #1f2937;
+  border: 1px solid #374151;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.edit-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn.save {
+  background: #16a34a;
+}
+.btn.cancel {
+  background: #4b5563;
+}

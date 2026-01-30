@@ -82,14 +82,30 @@ export const SidebarOffcanvas = () => {
                 borderRight: '1px solid rgba(255,255,255,0.1)'
             }}
         >
-            <div className="offcanvas-header" style={{ padding: '30px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                <h2 className="offcanvas-title" id="offcanvasNavbarLabel" style={{ letterSpacing: '2px', fontWeight: '800' }}>PIXEL PUNCH</h2>
+            <div className="offcanvas-header" style={{ padding: '30px', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h2 className="offcanvas-title" id="offcanvasNavbarLabel" style={{ letterSpacing: '2px', fontWeight: '800', margin: 0 }}>PIXEL PUNCH</h2>
                 <button
                     type="button"
-                    className="btn-close btn-close-white"
-                    data-bs-dismiss="offcanvas"
+                    onClick={() => {
+                        const offcanvas = document.getElementById("offcanvasNavbar");
+                        if (offcanvas) {
+                            offcanvas.classList.remove('show');
+                            const backdrop = document.querySelector('.offcanvas-backdrop');
+                            if (backdrop) backdrop.remove();
+                            document.body.style.overflow = '';
+                        }
+                    }}
+                    style={{
+                        background: 'transparent',
+                        border: 'none',
+                        color: 'white',
+                        fontSize: '30px',
+                        cursor: 'pointer',
+                        lineHeight: '1',
+                        padding: '0 10px'
+                    }}
                     aria-label="Close"
-                ></button>
+                >&times;</button>
             </div>
             <div className="offcanvas-body" style={{ padding: '0' }}>
                 <ul className="sidelist" style={{ listStyle: 'none', padding: '20px 0', margin: 0 }}>
@@ -121,6 +137,9 @@ export const SidebarOffcanvas = () => {
                             </li>
                             <li onClick={() => handleNavigation("/Profile")} style={liStyle}>
                                 <span style={linkText}>PROFILE</span>
+                            </li>
+                            <li onClick={() => handleNavigation("/projects")} style={liStyle}>
+                                <span style={linkText}>PROJECTS</span>
                             </li>
                             <li onClick={() => { logout(); handleNavigation("/login"); }} style={{ ...liStyle, color: '#ff4d4d' }}>
                                 <span style={linkText}>LOGOUT</span>

@@ -6,6 +6,7 @@ import LandingPage from "./LandingPage.jsx";
 import Contemporary from "./Contemporary.jsx";
 import Dashboard from "./Dashboard.jsx"
 import Profile from "./Profile.jsx"
+import Projects from "./Projects.jsx"
 import AboutUs from "./AboutUs.jsx"
 import CarList from "./CarList.jsx"
 import Career from "./Career.jsx"
@@ -34,6 +35,10 @@ function App() {
                 <Route
                     path="/Profile"
                     element={<PrivateRoute><Profile /></PrivateRoute>}
+                />
+                <Route
+                    path="/projects"
+                    element={<PrivateRoute><Projects /></PrivateRoute>}
                 />
                 <Route
                     path="/about-us"

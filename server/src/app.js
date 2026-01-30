@@ -1,5 +1,7 @@
 import express from "express";
 import authRoutes from "./routes/auth.js";
+import profileRoutes from "./routes/profile.js";
+import projectRoutes from "./routes/projects.js";
 import { sequelize } from "./db.js";
 import cors from "cors";
 import session from "express-session";
@@ -32,6 +34,8 @@ app.use(passport.session());
 
 // --- Mount auth routes ---
 app.use("/api/auth", authRoutes);
+app.use("/api/profile", profileRoutes);
+app.use("/api/projects", projectRoutes);
 
 // --- Optional route to get current user for dashboard ---
 app.get("/api/me", authMiddleware, (req, res) => {
@@ -43,7 +47,7 @@ sequelize.authenticate()
     .then(() => console.log("Database connected"))
     .catch(err => console.error("Database connection error:", err));
 
-sequelize.sync()
+sequelize.sync({ alter: true })
     .then(() => console.log("Database synced"));
 
 // --- Start server ---

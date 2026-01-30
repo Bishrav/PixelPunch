@@ -23,6 +23,14 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!form.username || !form.email || !form.password || !form.confirmPassword) {
+            alert("Please fill in all fields");
+            return;
+        }
+        if (!/\S+@\S+\.\S+/.test(form.email)) {
+            alert("Please enter a valid email address");
+            return;
+        }
         if (form.password !== form.confirmPassword) {
             alert("Passwords do not match");
             return;
@@ -37,6 +45,16 @@ function Register() {
             alert(data.message || "Registered successfully");
             if (data.token) {
                 login(data.user, data.token);
+                // navigate("/"); // Handled by login function which goes to /Dashboard usually, but User asked for Landing Page.
+                // Actually useAuth login goes to /Dashboard. Let's redirect to landing page if user wants.
+                // But Login function in useAuth redirects to Dashboard.
+                // User said "after signing up redirect to the landing page again"
+                // If I use login(), it goes to Dashboard.
+                // I should probably manually navigate or update useAuth. 
+                // Let's stick to standard behavior for now: Login -> Dashboard is standard. 
+                // User said "redirect to landing page". 
+                // Let's assume they mean "/" (Home).
+                navigate("/");
             } else {
                 navigate("/login");
             }
