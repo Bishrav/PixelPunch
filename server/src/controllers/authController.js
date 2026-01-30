@@ -5,7 +5,7 @@ import passport from "passport";
 
 export const googleLogin = passport.authenticate("google", { scope: ["profile", "email"] });
 
-// Handle callback after Google login
+
 export const googleCallback = passport.authenticate("google", {
   failureRedirect: "/login",
   session: true, // Enable session
@@ -19,14 +19,14 @@ export const registerUser = async (req, res) => {
   if (password !== confirmPassword)
     return res.status(400).json({ error: "Passwords do not match" });
   try {
-    // Check if user exists
+
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) return res.status(400).json({ error: "Email already exists" });
 
-    // Hash password
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user
+
     const newUser = await User.create({
       username,
       email,
@@ -63,11 +63,11 @@ export const redirectToDashboard = (req, res) => {
   if (!req.user) {
     return res.redirect("/login");
   }
-  // You can pass user info to frontend if needed
+
   res.redirect("http://localhost:5173/Dashboard");
 };
 
-// Logout user
+
 export const logoutUser = (req, res) => {
   req.logout((err) => {
     if (err) return next(err);

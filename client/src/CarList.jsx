@@ -3,7 +3,7 @@ import { useAuth } from "./hooks/useAuth.js";
 import "./CarList.css";
 
 import { useState } from "react";
-import Sidebar, { SidebarOffcanvas } from "./Components/Sidebar.jsx";
+import Sidebar from "./Components/Sidebar.jsx";
 
 function CarList() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ function CarList() {
   const [cars, setCars] = useState([
     { name: "Range Rover", type: "SUV", price: "$95,000" },
     { name: "Porsche 911", type: "Sports", price: "$120,000" },
-    {  name: "Lamborghini Aventador", type: "Supercar", price: "$450,000" },
+    { name: "Lamborghini Aventador", type: "Supercar", price: "$450,000" },
     { name: "G-Wagon", type: "SUV", price: "$140,000" },
     { name: "Tesla Model S", type: "Electric", price: "$90,000" },
     { name: "BMW M5", type: "Sedan", price: "$105,000" },
@@ -34,7 +34,7 @@ function CarList() {
 
   return (
     <div className="page-container">
-      <Sidebar />
+      {/* <Sidebar /> Removed */}
 
       <div className="main-content">
         <nav className="page-nav">
@@ -45,7 +45,7 @@ function CarList() {
             >
               ← Home
             </button>
-            <SidebarOffcanvas />
+            <Sidebar />
           </div>
 
           <h1 className="nav-title">Car List</h1>

@@ -1,71 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.js";
 
 const Sidebar = () => {
-    useEffect(() => {
-        const offcanvas = document.getElementById("offcanvasNavbar");
-        const overlay = document.getElementById("blur-overlay");
-        if (!offcanvas || !overlay) return;
-
-        const handleShown = () => {
-            overlay.style.opacity = "1";
-            overlay.style.pointerEvents = "auto";
-        };
-
-        const handleHidden = () => {
-            overlay.style.opacity = "0";
-            overlay.style.pointerEvents = "none";
-        };
-
-        offcanvas.addEventListener("shown.bs.offcanvas", handleShown);
-        offcanvas.addEventListener("hidden.bs.offcanvas", handleHidden);
-
-        // Cleanup overlay on unmount
-        return () => {
-            offcanvas.removeEventListener("shown.bs.offcanvas", handleShown);
-            offcanvas.removeEventListener("hidden.bs.offcanvas", handleHidden);
-            overlay.style.opacity = "0";
-            overlay.style.pointerEvents = "none";
-        };
-    }, []);
-
-    return (
-        <div id="blur-overlay" style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.44)',
-            backdropFilter: 'blur(8px)',
-            opacity: 0,
-            pointerEvents: 'none',
-            transition: 'opacity 0.4s ease-in-out',
-            zIndex: 1040
-        }}></div>
-    );
-};
-
-export const SidebarOffcanvas = () => {
     const navigate = useNavigate();
     const { isAuthenticated, logout } = useAuth();
 
     const handleNavigation = (path) => {
         navigate(path);
-
-        // Use standard Bootstrap way to hide offcanvas
+        // Close offcanvas programmatically
         const offcanvasElement = document.getElementById("offcanvasNavbar");
-        if (typeof bootstrap !== 'undefined' && bootstrap.Offcanvas) {
-            const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement) || new bootstrap.Offcanvas(offcanvasElement);
-            offcanvas.hide();
-        } else {
-            // Fallback for direct DOM manipulation if bootstrap isn't available globally
-            offcanvasElement.classList.remove('show');
-            const backdrop = document.querySelector('.offcanvas-backdrop');
-            if (backdrop) backdrop.remove();
-            document.body.style.overflow = '';
-            document.body.style.paddingRight = '';
+        if (offcanvasElement) {
+            // Bootstrap 5 way
+            const bsOffcanvas = window.bootstrap ? window.bootstrap.Offcanvas.getInstance(offcanvasElement) : null;
+            if (bsOffcanvas) {
+                bsOffcanvas.hide();
+            } else {
+                // Fallback
+                const closeBtn = offcanvasElement.querySelector('[data-bs-dismiss="offcanvas"]');
+                if (closeBtn) closeBtn.click();
+            }
         }
     };
 
@@ -76,64 +30,113 @@ export const SidebarOffcanvas = () => {
             id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel"
             style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.95)',
+                backgroundColor: 'rgba(5, 5, 5, 0.9)',
+                background: 'linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(5, 5, 5, 0.98) 100%)',
+                backdropFilter: 'blur(30px)',
+                WebkitBackdropFilter: 'blur(30px)',
                 color: '#fff',
-                width: '350px',
-                borderRight: '1px solid rgba(255,255,255,0.1)'
+                width: '700px', // Very wide as requested
+                borderRight: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '20px 0 50px rgba(0,0,0,0.7)',
+                height: '100vh',
+                maxWidth: '90vw',
+                zIndex: 2000 // Ensure it's on top of everything
             }}
         >
-            <div className="offcanvas-header" style={{ padding: '30px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                <h2 className="offcanvas-title" id="offcanvasNavbarLabel" style={{ letterSpacing: '2px', fontWeight: '800' }}>PIXEL PUNCH</h2>
+            <div className="offcanvas-header" style={{
+                padding: '40px 30px',
+                borderBottom: '1px solid rgba(255,255,255,0.05)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+            }}>
+                <h2 className="offcanvas-title" id="offcanvasNavbarLabel" style={{
+                    fontFamily: '"Orbitron", sans-serif', // Assuming generic for now, or fallback
+                    letterSpacing: '3px',
+                    fontWeight: '700',
+                    fontSize: '1.4rem',
+                    margin: 0,
+                    textTransform: 'uppercase',
+                    background: 'linear-gradient(45deg, #fff, #aaa)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent'
+                }}>
+                    Pixel Punch
+                </h2>
+
+                {/* Custom Close Button */}
                 <button
                     type="button"
-                    className="btn-close btn-close-white"
                     data-bs-dismiss="offcanvas"
                     aria-label="Close"
-                ></button>
+                    style={{
+                        background: 'transparent',
+                        border: '1px solid rgba(255,255,255,0.2)',
+                        borderRadius: '50%',
+                        color: 'white',
+                        width: '35px',
+                        height: '35px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'white'; e.currentTarget.style.transform = 'rotate(90deg)'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'; e.currentTarget.style.transform = 'rotate(0deg)'; }}
+                >
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L11 11M1 11L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </button>
             </div>
-            <div className="offcanvas-body" style={{ padding: '0' }}>
-                <ul className="sidelist" style={{ listStyle: 'none', padding: '20px 0', margin: 0 }}>
-                    <li onClick={() => handleNavigation("/Home")} style={liStyle}>
-                        <span style={linkText}>HOME</span>
-                    </li>
-                    <li onClick={() => handleNavigation("/about-us")} style={liStyle}>
-                        <span style={linkText}>ABOUT US</span>
-                    </li>
-                    <li onClick={() => handleNavigation("/career")} style={liStyle}>
-                        <span style={linkText}>CAREER</span>
-                    </li>
-                    <li onClick={() => handleNavigation("/Contemporary")} style={liStyle}>
-                        <span style={linkText}>CONTEMPORARY</span>
-                    </li>
-                    <li onClick={() => handleNavigation("/current-model")} style={liStyle}>
-                        <span style={linkText}>CURRENT MODEL</span>
-                    </li>
-                    <li onClick={() => handleNavigation("/car-list")} style={liStyle}>
-                        <span style={linkText}>CAR LIST</span>
-                    </li>
 
-                    <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', margin: '20px 40px' }}></div>
+            <div className="offcanvas-body" style={{
+                padding: '30px 0',
+                flexGrow: 1,
+                overflowY: 'auto'
+            }}>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '5px' }}>
+
+                    <SidebarItem label="Landing" onClick={() => handleNavigation("/")} />
+                    <SidebarItem label="Home" onClick={() => handleNavigation("/Home")} />
+                    <SidebarItem label="Shop" onClick={() => handleNavigation("/shop")} />
+                    <SidebarItem label="Contemporary" onClick={() => handleNavigation("/Contemporary")} />
+                    <SidebarItem label="Categories" onClick={() => handleNavigation("/categories")} />
+                    <SidebarItem label="Career" onClick={() => handleNavigation("/career")} />
+
+                    <div style={{ margin: '20px 30px', height: '1px', background: 'rgba(255,255,255,0.1)' }}></div>
 
                     {isAuthenticated ? (
                         <>
-                            <li onClick={() => handleNavigation("/Dashboard")} style={liStyle}>
-                                <span style={linkText}>DASHBOARD</span>
-                            </li>
-                            <li onClick={() => handleNavigation("/Profile")} style={liStyle}>
-                                <span style={linkText}>PROFILE</span>
-                            </li>
-                            <li onClick={() => { logout(); handleNavigation("/login"); }} style={{ ...liStyle, color: '#ff4d4d' }}>
-                                <span style={linkText}>LOGOUT</span>
+                            <SidebarItem label="Profile" onClick={() => handleNavigation("/Profile")} />
+                            <SidebarItem label="Dashboard" onClick={() => handleNavigation("/Dashboard")} />
+
+
+                            <li
+                                onClick={() => { logout(); handleNavigation("/login"); }}
+                                style={{
+                                    padding: '15px 30px',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s',
+                                    color: '#ff6b6b',
+                                    marginTop: '10px'
+                                }}
+                                onMouseEnter={(e) => e.currentTarget.style.paddingLeft = '40px'}
+                                onMouseLeave={(e) => e.currentTarget.style.paddingLeft = '30px'}
+                            >
+                                <span style={{
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '2px',
+                                    fontWeight: '600',
+                                    fontSize: '0.9rem'
+                                }}>Logout</span>
                             </li>
                         </>
                     ) : (
                         <>
-                            <li onClick={() => handleNavigation("/login")} style={liStyle}>
-                                <span style={linkText}>LOGIN</span>
-                            </li>
-                            <li onClick={() => handleNavigation("/register")} style={liStyle}>
-                                <span style={linkText}>SIGNUP</span>
-                            </li>
+                            <SidebarItem label="Login" onClick={() => handleNavigation("/login")} />
+                            <SidebarItem label="Signup" onClick={() => handleNavigation("/register")} />
                         </>
                     )}
                 </ul>
@@ -142,19 +145,37 @@ export const SidebarOffcanvas = () => {
     );
 };
 
-const liStyle = {
-    cursor: 'pointer',
-    padding: '15px 40px',
-    transition: 'all 0.3s ease',
-    display: 'flex',
-    alignItems: 'center',
-};
-
-const linkText = {
-    fontSize: '1.2rem',
-    fontWeight: '500',
-    letterSpacing: '1px',
-    transition: 'transform 0.3s ease',
-};
+const SidebarItem = ({ label, onClick }) => {
+    return (
+        <li
+            onClick={onClick}
+            style={{
+                padding: '15px 30px',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                position: 'relative',
+                overflow: 'hidden'
+            }}
+            onMouseEnter={(e) => {
+                e.currentTarget.style.paddingLeft = '45px';
+                e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+            }}
+            onMouseLeave={(e) => {
+                e.currentTarget.style.paddingLeft = '30px';
+                e.currentTarget.style.background = 'transparent';
+            }}
+        >
+            <span style={{
+                textTransform: 'uppercase',
+                letterSpacing: '2px',
+                fontWeight: '500',
+                fontSize: '0.9rem',
+                color: 'rgba(255,255,255,0.8)'
+            }}>
+                {label}
+            </span>
+        </li>
+    );
+}
 
 export default Sidebar;

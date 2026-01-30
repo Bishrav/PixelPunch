@@ -86,8 +86,79 @@ body {
 .hero-title {
   font-size: 90px;
   font-weight: 700;
-  /* transform: rotate(15deg); */
   margin: 0;
+  position: relative;
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+
+  2%,
+  64% {
+    transform: translate(2px, 0) skew(0deg);
+  }
+
+  4%,
+  60% {
+    transform: translate(-2px, 0) skew(0deg);
+  }
+
+  62% {
+    transform: translate(0, 0) skew(5deg);
+  }
+}
+
+.hero-title:before,
+.hero-title:after {
+  content: attr(title);
+  position: absolute;
+  left: 0;
+}
+
+.hero-title:before {
+  animation: glitchTop 1s linear infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+}
+
+@keyframes glitchTop {
+
+  2%,
+  64% {
+    transform: translate(2px, -2px);
+  }
+
+  4%,
+  60% {
+    transform: translate(-2px, 2px);
+  }
+
+  62% {
+    transform: translate(13px, -1px) skew(-13deg);
+  }
+}
+
+.hero-title:after {
+  animation: glitchBotom 1.5s linear infinite;
+  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+  -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+
+@keyframes glitchBotom {
+
+  2%,
+  64% {
+    transform: translate(-2px, 0);
+  }
+
+  4%,
+  60% {
+    transform: translate(-2px, 0);
+  }
+
+  62% {
+    transform: translate(-22px, 5px) skew(21deg);
+  }
 }
 
 .hero-subtitle {
@@ -136,7 +207,30 @@ body {
 
 .flex h4 {
   padding-top: 20px;
+}
 
+/* 3D TILT CARD EFFECT */
+.tilt-card {
+  transition: transform 0.1s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.tilt-card:hover {
+  transform: rotateX(10deg) rotateY(10deg) scale(1.05);
+}
+
+/* SCROLL FADE IN */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, visibility;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 .flex button,
@@ -224,7 +318,8 @@ body {
 .thirdlast {
   display: flex;
   justify-content: space-between;
-  margin: 350px;
+  margin: 150px 350px;
+  text-align: center;
 }
 
 .sidelist {
@@ -428,4 +523,123 @@ body {
     display: none;
     /* Hide dealers text on very small screens */
   }
+
+  .newsletter-input {
+    flex-direction: column;
+  }
+
+  .newsletter-input input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+/* NEW CONTENT STYLES */
+.section-container {
+  margin-top: 150px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.new-arrival-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.electric-section {
+  margin-top: 150px;
+  padding: 80px 0;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+  text-align: center;
+}
+
+.neon-text {
+  color: #fff;
+  text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0;
+}
+
+.electric-grid {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.electric-card {
+  background: #111;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #333;
+  width: 400px;
+}
+
+.electric-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.electric-card h3 {
+  color: #4ade80;
+  /* Light green */
+  margin-bottom: 10px;
+}
+
+.newsletter-section {
+  margin: 150px auto;
+  width: 80%;
+  background: linear-gradient(135deg, #222, #000);
+  padding: 60px;
+  border-radius: 20px;
+  text-align: center;
+  border: 1px solid #333;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.newsletter-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.newsletter-input {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.newsletter-input input {
+  padding: 15px 25px;
+  border-radius: 30px;
+  border: 1px solid #444;
+  background: #111;
+  color: white;
+  font-size: 1rem;
+  width: 400px;
+}
+
+.newsletter-input button {
+  padding: 15px 40px;
+  border-radius: 30px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.newsletter-input button:hover {
+  transform: scale(1.05);
 }

@@ -23,6 +23,14 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!form.username || !form.email || !form.password || !form.confirmPassword) {
+            alert("Please fill in all fields");
+            return;
+        }
+        if (!/\S+@\S+\.\S+/.test(form.email)) {
+            alert("Please enter a valid email address");
+            return;
+        }
         if (form.password !== form.confirmPassword) {
             alert("Passwords do not match");
             return;
@@ -37,6 +45,7 @@ function Register() {
             alert(data.message || "Registered successfully");
             if (data.token) {
                 login(data.user, data.token);
+                navigate("/");
             } else {
                 navigate("/login");
             }
@@ -46,7 +55,7 @@ function Register() {
         }
     };
 
-    // Styles
+
     const wrapperStyle = {
         minHeight: '100vh',
         width: '100%',
@@ -54,7 +63,7 @@ function Register() {
         padding: 0,
         position: 'relative',
         overflow: 'hidden',
-        background: '#000',        // fallback if video doesn't load
+        background: '#000',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -72,7 +81,7 @@ function Register() {
 
     const containerStyle = {
         position: 'relative',
-        zIndex: 1,           // in front of video
+        zIndex: 1,
         width: '750px',
         marginTop: '20px',
         paddingLeft: '80px',
@@ -86,7 +95,7 @@ function Register() {
         display: 'flex',
         flexDirection: 'column',
         gap: '50px',
-        // color: 'white',
+
         marginRight: "70%",
     };
 
@@ -117,7 +126,7 @@ function Register() {
     };
     return (
         <div style={wrapperStyle}>
-            {/* full-screen video background */}
+
             <video style={videoStyle} src={Login} autoPlay muted loop />
 
             <div style={containerStyle}>
@@ -172,7 +181,7 @@ function Register() {
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        gap: '20px',    // space between images
+                        gap: '20px',
                         marginTop: '20px'
                     }}>
                         <a href="http://localhost:5000/api/auth/google">
