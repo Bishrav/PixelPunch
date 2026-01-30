@@ -28,7 +28,8 @@ router.post('/buy/:id', authMiddleware, async (req, res) => {
 
         const previousOwnerId = car.ownerId;
 
-
+        // Update status to Sold
+        car.status = 'Sold';
         await car.save();
 
 

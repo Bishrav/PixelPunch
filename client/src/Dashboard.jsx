@@ -217,6 +217,9 @@ function Dashboard() {
                   <div key={car.id} style={{ background: 'rgba(0,0,0,0.3)', padding: '15px', borderRadius: '10px', border: '1px solid #333' }}>
                     <h4 style={{ margin: '0 0 5px 0', fontSize: '1rem' }}>{car.name}</h4>
                     <p style={{ color: '#888', fontSize: '0.8rem' }}>Rs. {car.price}</p>
+                    <p style={{ fontSize: '0.8rem', color: car.status === 'Sold' ? '#ff4444' : '#00ff88', fontWeight: 'bold' }}>
+                      {car.status === 'Sold' ? 'SOLD' : 'AVAILABLE'}
+                    </p>
                     <button onClick={() => handleDeleteCar(car.id)} style={{ marginTop: '10px', background: 'red', border: 'none', color: 'white', padding: '5px 10px', borderRadius: '5px', cursor: 'pointer', fontSize: '0.8rem' }}>Delete</button>
                   </div>
                 ))}
