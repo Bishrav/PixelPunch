@@ -50,7 +50,7 @@ function Contemporary() {
 
                 <div className="nav-links">
                     <span onClick={() => navigate("/Home")} style={{ cursor: 'pointer' }}>Home</span>
-                    <span>Shop</span>
+                    <span onClick={() => navigate("/shop")} style={{ cursor: 'pointer' }}>Shop</span>
                     <span onClick={() => navigate("/collections")} style={{ cursor: 'pointer' }}>Collections</span>
                     <span>Categories</span>
                     <span onClick={() => navigate("/offers")} style={{ cursor: 'pointer' }}>Offers</span>
