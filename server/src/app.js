@@ -1,8 +1,11 @@
 import express from "express";
 import authRoutes from "./routes/auth.js";
 import profileRoutes from "./routes/profile.js";
-import projectRoutes from "./routes/projects.js";
+
 import careerRoutes from "./routes/career.js";
+import carRoutes from "./routes/cars.js";
+import offerRoutes from "./routes/offers.js";
+import dashboardRoutes from "./routes/dashboard.js";
 import { sequelize } from "./db.js";
 import cors from "cors";
 import session from "express-session";
@@ -36,8 +39,11 @@ app.use(passport.session());
 // --- Mount auth routes ---
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
-app.use("/api/projects", projectRoutes);
+
 app.use("/api/career", careerRoutes);
+app.use("/api/cars", carRoutes);
+app.use("/api/offers", offerRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 // --- Optional route to get current user for dashboard ---
 app.get("/api/me", authMiddleware, (req, res) => {

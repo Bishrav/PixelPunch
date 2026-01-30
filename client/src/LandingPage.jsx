@@ -101,7 +101,7 @@ function LandingPage() {
                 <div className="heros-text">
                     <p>NEW TECHNOLOGY & BUILD</p>
                     <h1>LATEST POWERFUL ENGINE FOR YOU</h1>
-                    <button className="button" style={{ marginTop: '20px' }}>Shop Now</button>
+                    <button className="button" style={{ marginTop: '20px' }} onClick={() => navigate("/offers")}>Discover Now</button>
                 </div>
 
                 {/* BRANDING IMAGES */}
@@ -110,21 +110,21 @@ function LandingPage() {
                         <img src={Left} alt="" />
                         <div className="branding-txt1">
                             <p>NEW TECHNOLOGY & BUILD</p>
-                            <button className="button">Shop Now</button>
+                            <button className="button" onClick={() => navigate("/shop")}>Shop Now</button>
                         </div>
                     </div>
                     <div>
                         <img src={Mid} alt="" />
                         <div className="branding-txt2">
                             <p>NEW TECHNOLOGY & BUILD</p>
-                            <button className="button">Shop Now</button>
+                            <button className="button" onClick={() => navigate("/shop")}>Shop Now</button>
                         </div>
                     </div>
                     <div>
                         <img src={Right} alt="" />
                         <div className="branding-txt3">
                             <p>NEW TECHNOLOGY & BUILD</p>
-                            <button className="button">Shop Now</button>
+                            <button className="button" onClick={() => navigate("/shop")}>Shop Now</button>
                         </div>
                     </div>
                 </div>
@@ -188,7 +188,7 @@ function LandingPage() {
                 </div>
                 <div className="heros1-txt">
                     <h1>All kind of parts that <br />You need can find here</h1>
-                    <button className="edit">Shop now</button>
+                    <button className="edit" onClick={() => navigate("/offers")}>Explore Now</button>
                 </div>
                 <span className="mau">
                     <h1>Get you car with the qualitative <br />and cleaned way</h1>
@@ -253,7 +253,7 @@ function LandingPage() {
                     <div className="div-txt">
                         <h1>Flash Deals</h1>
                         <p>Hurry up and get 25% discount </p>
-                        <button className="button">shop now</button>
+                        <button className="button" onClick={() => navigate("/shop")}>Shop Now</button>
                         <FlashTimer />
                     </div>
 

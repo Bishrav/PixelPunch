@@ -1,35 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Components/Sidebar.jsx';
 import Footer from './Footer.jsx';
-import Car1 from "./assets/Collection1.png";
-import Car2 from "./assets/Collection2.png";
-import Car3 from "./assets/Collection3.png";
-import Car4 from "./assets/Collection4.png";
-import Car5 from "./assets/Collection5.png";
-import Car6 from "./assets/Collection6.png";
-import Car7 from "./assets/Collection7.png";
-import Car8 from "./assets/Collection8.png";
+import axios from 'axios';
+import Car2 from "./assets/Collection2.png"; // Fallback image
 
 const Offers = () => {
     const navigate = useNavigate();
+    const [offers, setOffers] = useState([]);
 
-    const specialOffers = [
-        { title: "Summer Blowout", type: "Seasonal", discount: "25% OFF", car: "Range Rover Sport", img: Car1, expires: "2 Days Left" },
-        { title: "Executive Lease", type: "Business", discount: "0% APR", car: "Mercedes G-Wagon", img: Car2, expires: "Limited Time" },
-        { title: "Trade-In Bonus", type: "Exchange", discount: "+$5000", car: "Any Luxury SUV", img: Car3, expires: "Always On" },
-        { title: "First Time Buyer", type: "New User", discount: "Free Insurance", car: "Porsche 911", img: Car4, expires: "New Accounts" },
-        { title: "Weekend Warrior", type: "Rental", discount: "Rent 2 Get 1", car: "Off-road Fleet", img: Car5, expires: "Fridays Only" },
-        { title: "Family Package", type: "Bundle", discount: "Safety Kit Included", car: "Volvo XC90", img: Car6, expires: "This Month" },
-        { title: "Midnight Run", type: "Event", discount: "VIP Access", car: "Lamborghini Urus", img: Car7, expires: "Tonight" },
-        { title: "Pre-Order Special", type: "Future", discount: "Early Bird Price", car: "2026 Models", img: Car8, expires: "Limited Slots" }
-    ];
+    useEffect(() => {
+        const fetchOffers = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/api/offers");
+                setOffers(res.data);
+            } catch (err) {
+                console.error("Error fetching offers", err);
+            }
+        };
+        fetchOffers();
+    }, []);
 
     return (
         <div style={{ backgroundColor: 'black', minHeight: '100vh', color: 'white', overflowX: 'hidden' }}>
             <Sidebar />
 
-            {/* Nav similar to Contemporary for consistency */}
+            {/* Navbar ... */}
             <nav style={{
                 padding: '10px 30px',
                 display: 'flex',
@@ -47,34 +43,6 @@ const Offers = () => {
                 animation: 'slideDown 0.8s ease forwards'
             }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasNavbar"
-                        aria-controls="offcanvasNavbar"
-                        style={{
-                            border: '1px solid rgba(255,255,255,0.3)',
-                            background: 'transparent',
-                            padding: '6px 10px',
-                            marginRight: '20px',
-                            cursor: 'pointer',
-                            borderRadius: '6px',
-                            transition: 'all 0.3s'
-                        }}
-                        onMouseEnter={e => {
-                            e.currentTarget.style.background = 'rgba(255,255,255,1)';
-                            e.currentTarget.querySelectorAll('span').forEach(s => s.style.background = 'black');
-                        }}
-                        onMouseLeave={e => {
-                            e.currentTarget.style.background = 'transparent';
-                            e.currentTarget.querySelectorAll('span').forEach(s => s.style.background = 'white');
-                        }}
-                    >
-                        <span className="navbar-toggler-icon" style={{ display: 'block', width: '20px', height: '2px', background: 'white', marginBottom: '4px', transition: 'background 0.3s' }}></span>
-                        <span className="navbar-toggler-icon" style={{ display: 'block', width: '20px', height: '2px', background: 'white', marginBottom: '4px', transition: 'background 0.3s' }}></span>
-                        <span className="navbar-toggler-icon" style={{ display: 'block', width: '20px', height: '2px', background: 'white', transition: 'background 0.3s' }}></span>
-                    </button>
                     <h2 onClick={() => navigate("/")} style={{ cursor: 'pointer', margin: 0, fontFamily: '"Orbitron", sans-serif', letterSpacing: '3px' }}>PIXEL PUNCH</h2>
                 </div>
                 <div style={{ display: 'flex', gap: '30px', fontWeight: '500' }}>
@@ -85,7 +53,7 @@ const Offers = () => {
             <header style={{
                 textAlign: 'center',
                 padding: '100px 20px',
-                background: 'linear-gradient(180deg, rgba(20,20,20,0) 0%, rgba(20,20,20,1) 100%), url(' + Car2 + ')', // Fallback or creative use of assets
+                background: 'linear-gradient(180deg, rgba(20,20,20,0) 0%, rgba(20,20,20,1) 100%), url(' + Car2 + ')',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 position: 'relative'
@@ -106,7 +74,7 @@ const Offers = () => {
                     gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
                     gap: '40px'
                 }}>
-                    {specialOffers.map((offer, index) => (
+                    {offers.map((offer, index) => (
                         <div key={index} className="offer-card-page" style={{
                             background: '#111',
                             borderRadius: '25px',
@@ -115,8 +83,7 @@ const Offers = () => {
                             transition: 'all 0.4s ease',
                             cursor: 'pointer',
                             position: 'relative',
-                            animation: `fadeInUp 0.8s ease forwards ${index * 0.1}s`,
-                            opacity: 0
+                            animation: `fadeInUp 0.8s ease forwards ${index * 0.1}s`
                         }}
                             onMouseEnter={e => {
                                 e.currentTarget.style.transform = 'translateY(-15px)';
@@ -130,7 +97,7 @@ const Offers = () => {
                             }}
                         >
                             <div style={{ height: '250px', overflow: 'hidden', position: 'relative' }}>
-                                <img src={offer.img} alt={offer.car} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <img src={offer.img || Car2} alt={offer.car} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 <div style={{
                                     position: 'absolute',
                                     top: '20px',
@@ -159,18 +126,15 @@ const Offers = () => {
                                         padding: '10px 25px',
                                         borderRadius: '20px',
                                         fontWeight: 'bold',
-                                        cursor: 'pointer',
-                                        transition: 'background 0.2s'
-                                    }}
-                                        onMouseEnter={e => { e.currentTarget.style.background = '#ddd'; }}
-                                        onMouseLeave={e => { e.currentTarget.style.background = 'white'; }}
-                                    >
+                                        cursor: 'pointer'
+                                    }}>
                                         Claim Now
                                     </button>
                                 </div>
                             </div>
                         </div>
                     ))}
+                    {offers.length === 0 && <div style={{ color: '#666', gridColumn: '1/-1', textAlign: 'center' }}>No offers active currently. Check back soon.</div>}
                 </div>
             </div>
 

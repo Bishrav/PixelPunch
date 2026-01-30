@@ -6,7 +6,7 @@ import LandingPage from "./LandingPage.jsx";
 import Contemporary from "./Contemporary.jsx";
 import Dashboard from "./Dashboard.jsx"
 import Profile from "./Profile.jsx"
-import Projects from "./Projects.jsx"
+
 import AboutUs from "./AboutUs.jsx"
 
 import Career from "./Career.jsx"
@@ -14,6 +14,8 @@ import CurrentModel from "./CurrentModel.jsx"
 import Offers from "./Offers.jsx"
 import Collections from "./Collections.jsx"
 import Shop from "./Shop.jsx"
+import ProductDetails from "./ProductDetails.jsx";
+import Categories from "./Categories.jsx"
 import { PrivateRoute, PublicRoute } from "./Components/AuthRoutes.jsx";
 
 function App() {
@@ -39,10 +41,7 @@ function App() {
                     path="/Profile"
                     element={<PrivateRoute><Profile /></PrivateRoute>}
                 />
-                <Route
-                    path="/projects"
-                    element={<PrivateRoute><Projects /></PrivateRoute>}
-                />
+
                 <Route
                     path="/about-us"
                     element={<PrivateRoute><AboutUs /></PrivateRoute>}
@@ -59,6 +58,8 @@ function App() {
                 <Route path="/offers" element={<Offers />} />
                 <Route path="/collections" element={<Collections />} />
                 <Route path="/shop" element={<Shop />} />
+                <Route path="/shop/:id" element={<PrivateRoute><ProductDetails /></PrivateRoute>} />
+                <Route path="/categories" element={<Categories />} />
             </Routes>
         </Router>
     )

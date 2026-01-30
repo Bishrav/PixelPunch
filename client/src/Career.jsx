@@ -120,11 +120,11 @@ function Career() {
                         <form onSubmit={handleSubmit} className="apply-form">
                             <div className="form-group">
                                 <label>Full Name</label>
-                                <input name="name" required value={formData.name} onChange={handleChange} placeholder="John Doe" />
+                                <input name="name" required value={formData.name} onChange={handleChange} placeholder="Pixel Punch" />
                             </div>
                             <div className="form-group">
                                 <label>Email Address</label>
-                                <input name="email" type="email" required value={formData.email} onChange={handleChange} placeholder="john@example.com" />
+                                <input name="email" type="email" required value={formData.email} onChange={handleChange} placeholder="career@pixelpunch.com" />
                             </div>
                             <div className="form-group">
                                 <label>Phone Number</label>

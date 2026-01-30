@@ -10,12 +10,17 @@ export default defineConfig({
       },
     }),
   ],
-  server : {
-    proxy :{
-      "/auth" : {
-        target : "http://localhost:5000",
-        changeOrigin : true,
+  server: {
+    proxy: {
+      "/auth": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
       }
     }
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './src/setupTests.js',
   }
 })

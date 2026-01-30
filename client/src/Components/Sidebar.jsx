@@ -102,6 +102,7 @@ const Sidebar = () => {
                     <SidebarItem label="Home" onClick={() => handleNavigation("/Home")} />
                     <SidebarItem label="Shop" onClick={() => handleNavigation("/shop")} />
                     <SidebarItem label="Contemporary" onClick={() => handleNavigation("/Contemporary")} />
+                    <SidebarItem label="Categories" onClick={() => handleNavigation("/categories")} />
                     <SidebarItem label="Career" onClick={() => handleNavigation("/career")} />
 
                     <div style={{ margin: '20px 30px', height: '1px', background: 'rgba(255,255,255,0.1)' }}></div>
@@ -110,7 +111,7 @@ const Sidebar = () => {
                         <>
                             <SidebarItem label="Profile" onClick={() => handleNavigation("/Profile")} />
                             <SidebarItem label="Dashboard" onClick={() => handleNavigation("/Dashboard")} />
-                            <SidebarItem label="Projects" onClick={() => handleNavigation("/projects")} />
+
 
                             <li
                                 onClick={() => { logout(); handleNavigation("/login"); }}
