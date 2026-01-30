@@ -40,7 +40,7 @@ function Contemporary() {
     const navigate = useNavigate();
 
     return (
-        <section className="contemporary">
+        <section className="contemporary page-container">
 
             {/* NAVBAR */}
             <nav className="navbar">
@@ -250,6 +250,7 @@ function Contemporary() {
                     ))}
                 </div>
             </div>
+            <div className="page-content"></div>
             <footer>
                 <Footer />
             </footer>

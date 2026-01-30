@@ -51,7 +51,7 @@ function LandingPage() {
     }, []);
 
     return (
-        <div className="landing-page">
+        <div className="landing-page page-container">
             {/* <Sidebar /> Removed overlay */}
             <div className="navbar">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
@@ -262,9 +262,9 @@ function LandingPage() {
 
             </div>
 
+            <div style={{ flex: 1 }}></div>
             <Footer />
         </div>
     );
 }
-
 export default LandingPage;
