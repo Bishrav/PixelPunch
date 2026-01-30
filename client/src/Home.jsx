@@ -110,23 +110,26 @@ export default function Home() {
                         <img src={Car1} alt="Car1" />
                         <h4>Range Rover</h4>
                         <p>Go anywhere, composed everywhere.</p>
-                        <button>
-                            Explore <img src={Icon} alt="" onClick={() => navigate("/shop")} style={{ cursor: 'pointer' }} /></button>
+                        <button onClick={() => navigate("/shop")}>
+                            Explore <img src={Icon} alt="" /></button>
+
 
                     </div>
                     <div className="tilt-card">
                         <img src={Car1} alt="Car1" />
                         <h4>Range Rover</h4>
                         <p>Go anywhere, composed everywhere.</p>
-                        <button>
-                            Explore <img src={Icon} alt="" onClick={() => navigate("/shop")} style={{ cursor: 'pointer' }} /></button>
+                        <button onClick={() => navigate("/shop")}>
+                            Explore <img src={Icon} alt="" /></button>
+
                     </div>
                     <div className="tilt-card">
                         <img src={Car1} alt="Car1" />
                         <h4>Range Rover</h4>
                         <p>Go anywhere, composed everywhere.</p>
-                        <button>
-                            Explore <img src={Icon} alt="" onClick={() => navigate("/shop")} style={{ cursor: 'pointer' }} /></button>
+                        <button onClick={() => navigate("/shop")}>
+                            Explore <img src={Icon} alt="" /></button>
+
                     </div>
                 </div>
                 <div className="brand">
