@@ -6,7 +6,7 @@ export const Offer = sequelize.define("Offer", {
     type: { type: DataTypes.STRING, allowNull: false },
     discount: { type: DataTypes.STRING, allowNull: false },
     car: { type: DataTypes.STRING, allowNull: false },
-    img: { type: DataTypes.STRING, defaultValue: '' },
+    img: { type: DataTypes.TEXT, defaultValue: '' },
     expires: { type: DataTypes.STRING, allowNull: false },
     ownerId: { type: DataTypes.INTEGER, allowNull: false }
 });

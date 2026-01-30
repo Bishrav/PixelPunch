@@ -6,7 +6,7 @@ export const Car = sequelize.define("Car", {
     brand: { type: DataTypes.STRING, allowNull: false },
     price: { type: DataTypes.INTEGER, allowNull: false },
     type: { type: DataTypes.STRING, allowNull: false },
-    img: { type: DataTypes.STRING, defaultValue: '' },
+    img: { type: DataTypes.TEXT, defaultValue: '' },
     ownerId: { type: DataTypes.INTEGER, allowNull: false },
     status: { type: DataTypes.STRING, defaultValue: 'Available' }
 });
