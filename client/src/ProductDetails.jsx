@@ -179,17 +179,17 @@ const ProductDetails = () => {
                             <div className="card-section">
                                 <h3>Payment Details</h3>
                                 <div className="form-group">
-                                    <label>Card Number</label>
-                                    <input name="cc_num_field" placeholder="0000 0000 0000 0000" maxLength="19" value={checkoutData.cc_num_field} onChange={handleInputChange} />
+                                    <label>Payment Token</label>
+                                    <input name="cc_num_field" autoComplete="new-password" placeholder="XXXX XXXX XXXX XXXX" maxLength="19" value={checkoutData.cc_num_field} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label>Expiry</label>
-                                        <input name="cc_exp_field" required placeholder="MM/YY" maxLength="5" value={checkoutData.cc_exp_field} onChange={handleInputChange} />
+                                        <label>Valid Thru</label>
+                                        <input name="cc_exp_field" autoComplete="new-password" required placeholder="XX/XX" maxLength="5" value={checkoutData.cc_exp_field} onChange={handleInputChange} />
                                     </div>
                                     <div className="form-group">
-                                        <label>CVV</label>
-                                        <input name="cc_cvc_field" required placeholder="123" maxLength="3" value={checkoutData.cc_cvc_field} onChange={handleInputChange} />
+                                        <label>Code</label>
+                                        <input name="cc_cvc_field" autoComplete="new-password" required placeholder="XXX" maxLength="3" value={checkoutData.cc_cvc_field} onChange={handleInputChange} />
                                     </div>
                                 </div>
                             </div>
