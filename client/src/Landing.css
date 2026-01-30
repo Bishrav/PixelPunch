@@ -26,6 +26,17 @@ body {
     transform: none;
 }
 
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    cursor: pointer;
+    background: linear-gradient(90deg, #333, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+}
+
 .landing-page .navbar {
     display: flex;
     justify-content: space-between;

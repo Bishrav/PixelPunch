@@ -66,7 +66,7 @@ function LandingPage() {
                     >
                         <span className="navbar-toggler-icon" style={{ filter: 'invert(1)', width: '30px', height: '30px' }}></span>
                     </button>
-                    <img src={Landing} alt="logo" onClick={() => navigate("/")} style={{ cursor: 'pointer', height: '80px', transition: 'height 0.3s ease' }} />
+                    <h2 className="nav-logo" onClick={() => navigate("/")} style={{ margin: 0 }}>PIXEL PUNCH</h2>
                     <Sidebar />
                 </div>
 
