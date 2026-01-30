@@ -10,6 +10,15 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { login } = useAuth();
+    <input
+    type={showPassword ? "text" : "password"}
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    placeholder="Enter Password"
+    required
+    style={inputStyle}
+/>
+
 
     // const handleChange = e => {
     //     setData({ ...data, [e.target.name]: e.target.value });
