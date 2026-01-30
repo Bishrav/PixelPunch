@@ -101,7 +101,7 @@ export default function Home() {
                 </div>
 
                 {/* BUTTON */}
-                <button className="discover-btn">DISCOVER NOW</button>
+                <button className="discover-btn" onClick={() => navigate("/offers")}>DISCOVER NOW</button>
             </div>
 
             <div>
@@ -111,7 +111,7 @@ export default function Home() {
                         <h4>Range Rover</h4>
                         <p>Go anywhere, composed everywhere.</p>
                         <button>
-                            Explore <img src={Icon} alt="" /></button>
+                            Explore <img src={Icon} alt="" onClick={() => navigate("/shop")} style={{ cursor: 'pointer' }} /></button>
 
                     </div>
                     <div className="tilt-card">
@@ -119,14 +119,14 @@ export default function Home() {
                         <h4>Range Rover</h4>
                         <p>Go anywhere, composed everywhere.</p>
                         <button>
-                            Explore <img src={Icon} alt="" /></button>
+                            Explore <img src={Icon} alt="" onClick={() => navigate("/shop")} style={{ cursor: 'pointer' }} /></button>
                     </div>
                     <div className="tilt-card">
                         <img src={Car1} alt="Car1" />
                         <h4>Range Rover</h4>
                         <p>Go anywhere, composed everywhere.</p>
                         <button>
-                            Explore <img src={Icon} alt="" /></button>
+                            Explore <img src={Icon} alt="" onClick={() => navigate("/shop")} style={{ cursor: 'pointer' }} /></button>
                     </div>
                 </div>
                 <div className="brand">
@@ -188,9 +188,6 @@ export default function Home() {
                     <p>"Drive the Himalayas, <br /> Live the Adventure."</p>
                 </div>
 
-                <button className="rentu-button">
-                    Rent Now <span>→</span>
-                </button>
             </div>
             <footer>
                 <div className="foot">

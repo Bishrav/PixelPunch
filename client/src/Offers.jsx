@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Sidebar from './Components/Sidebar.jsx';
-import Footer from './Footer.jsx';
-import axios from 'axios';
-import Car2 from "./assets/Collection2.png"; // Fallback image
+import CheckoutModal from './Components/CheckoutModal.jsx';
+import { useAuth } from './hooks/useAuth.js';
 
 const Offers = () => {
     const navigate = useNavigate();
+    const { user } = useAuth();
     const [offers, setOffers] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedOffer, setSelectedOffer] = useState(null);
 
     useEffect(() => {
         const fetchOffers = async () => {
@@ -20,6 +19,43 @@ const Offers = () => {
         };
         fetchOffers();
     }, []);
+
+    const handleClaimClick = (offer) => {
+        if (!user) {
+            alert("Please login to claim offers");
+            navigate("/login");
+            return;
+        }
+        setSelectedOffer(offer);
+        setShowModal(true);
+    };
+
+    const handlePaymentComplete = async (checkoutData) => {
+        try {
+            const token = localStorage.getItem("token");
+            // Log activity to Dashboard
+            await axios.post("http://localhost:5000/api/activity/log", {
+                action: "Claimed Offer",
+                details: `Claimed ${selectedOffer.title} for ${selectedOffer.car}`
+            }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            setShowModal(false);
+            const toast = document.createElement("div");
+            toast.className = "payment-toast";
+            toast.innerText = "Offer Claimed Successfully! 🎉";
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+                navigate("/dashboard");
+            }, 3000);
+        } catch (err) {
+            console.error("Claim failed", err);
+            alert("Claim processing failed.");
+        }
+    };
 
     return (
         <div style={{ backgroundColor: 'black', minHeight: '100vh', color: 'white', overflowX: 'hidden' }}>
@@ -119,7 +155,7 @@ const Offers = () => {
 
                                 <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #222', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <span style={{ fontSize: '0.9rem', color: '#ff4444' }}>{offer.expires}</span>
-                                    <button style={{
+                                    <button onClick={() => handleClaimClick(offer)} style={{
                                         background: 'white',
                                         color: 'black',
                                         border: 'none',
@@ -139,6 +175,13 @@ const Offers = () => {
             </div>
 
             <Footer />
+            <CheckoutModal
+                show={showModal}
+                onClose={() => setShowModal(false)}
+                onPaymentComplete={handlePaymentComplete}
+                user={user}
+                itemName={selectedOffer?.title}
+            />
         </div>
     );
 };

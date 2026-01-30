@@ -13,6 +13,8 @@ import dotenv from "dotenv";
 import passport from "./config/passportConfig.js";
 import authMiddleware from "./middleware/authMiddleware.js";
 
+import activityRoutes from "./routes/activity.js"; // Import
+
 const app = express();
 
 dotenv.config();
@@ -44,6 +46,7 @@ app.use("/api/career", careerRoutes);
 app.use("/api/cars", carRoutes);
 app.use("/api/offers", offerRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/activity", activityRoutes); // Register
 
 // --- Optional route to get current user for dashboard ---
 app.get("/api/me", authMiddleware, (req, res) => {

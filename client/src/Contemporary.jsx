@@ -32,21 +32,60 @@ import Line from "./assets/Line.png"
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth.js";
 
+import CheckoutModal from './Components/CheckoutModal.jsx';
+import axios from 'axios';
+
 const cars = [Car1, Car2, Car3, Car4, Car5, Car6, Car7, Car8];
 const cars1 = [New1, New2, New3, New4, New5, New6, Car7, Car8];
 
 function Contemporary() {
-    const { isAuthenticated, logout } = useAuth();
+    const { isAuthenticated, user, logout } = useAuth();
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+
+    const handleClaim = (item) => {
+        if (!isAuthenticated) {
+            alert("Please login to claim offers");
+            navigate("/login");
+            return;
+        }
+        setSelectedItem(item);
+        setShowModal(true);
+    };
+
+    const handlePaymentComplete = async (checkoutData) => {
+        try {
+            const token = localStorage.getItem("token");
+            // Log activity
+            await axios.post("http://localhost:5000/api/activity/log", {
+                action: "Contemporary Order",
+                details: `Ordered ${selectedItem.title} - ${selectedItem.desc}`
+            }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            setShowModal(false);
+            const toast = document.createElement("div");
+            toast.className = "payment-toast";
+            toast.innerText = "Order Placed Successfully! 🎉";
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+                navigate("/dashboard");
+            }, 3000);
+        } catch (err) {
+            console.error("Order failed", err);
+            alert("Order processing failed.");
+        }
+    };
 
     return (
         <section className="contemporary">
-
-            {/* NAVBAR */}
+            {/* NO CHANGES ABOVE THIS POINT - navbar and hero remain same */}
             <nav className="navbar">
                 <img src={Logo} alt="Logo" className="logo" onClick={() => navigate("/")} style={{ cursor: 'pointer' }} />
-
-
 
                 <div className="nav-links">
                     <span onClick={() => navigate("/Home")} style={{ cursor: 'pointer' }}>Home</span>
@@ -160,9 +199,6 @@ function Contemporary() {
                 <Card />
                 <Card />
                 <Card />
-
-
-
             </div>
 
             {/* ANIMATED OFFERS SECTION */}
@@ -235,7 +271,7 @@ function Contemporary() {
                                         fontWeight: 'bold',
                                         fontSize: '1.2rem'
                                     }}>{offer.price}</span>
-                                    <button style={{
+                                    <button onClick={() => handleClaim(offer)} style={{
                                         padding: '8px 20px',
                                         background: 'white',
                                         color: 'black',
@@ -254,10 +290,13 @@ function Contemporary() {
                 <Footer />
             </footer>
 
-
-
-
-
+            <CheckoutModal
+                show={showModal}
+                onClose={() => setShowModal(false)}
+                onPaymentComplete={handlePaymentComplete}
+                user={user}
+                itemName={selectedItem?.title}
+            />
         </section>
     );
 }
