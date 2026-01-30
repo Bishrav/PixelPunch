@@ -274,6 +274,11 @@ function Dashboard() {
               <input required type="number" placeholder="Price" value={newCar.price} onChange={e => setNewCar({ ...newCar, price: e.target.value })} style={{ padding: '15px', background: '#333', border: 'none', color: 'white' }} />
               <input required placeholder="Type (e.g. SUV)" value={newCar.type} onChange={e => setNewCar({ ...newCar, type: e.target.value })} style={{ padding: '15px', background: '#333', border: 'none', color: 'white' }} />
               <input placeholder="Image URL (optional)" value={newCar.img} onChange={e => setNewCar({ ...newCar, img: e.target.value })} style={{ padding: '15px', background: '#333', border: 'none', color: 'white' }} />
+              {newCar.img && (
+                <div style={{ textAlign: 'center', marginTop: '10px' }}>
+                  <img src={newCar.img} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '10px', objectFit: 'cover' }} onError={(e) => e.target.style.display = 'none'} />
+                </div>
+              )}
 
               <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                 <button type="button" onClick={() => setShowAddCar(false)} style={{ flex: 1, padding: '15px', background: '#444', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Cancel</button>
@@ -299,6 +304,11 @@ function Dashboard() {
               <input required placeholder="Applicable Car" value={newOffer.car} onChange={e => setNewOffer({ ...newOffer, car: e.target.value })} style={{ padding: '15px', background: '#333', border: 'none', color: 'white' }} />
               <input required placeholder="Expires (e.g. 2 Days)" value={newOffer.expires} onChange={e => setNewOffer({ ...newOffer, expires: e.target.value })} style={{ padding: '15px', background: '#333', border: 'none', color: 'white' }} />
               <input placeholder="Image URL (optional)" value={newOffer.img} onChange={e => setNewOffer({ ...newOffer, img: e.target.value })} style={{ padding: '15px', background: '#333', border: 'none', color: 'white' }} />
+              {newOffer.img && (
+                <div style={{ textAlign: 'center', marginTop: '10px' }}>
+                  <img src={newOffer.img} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '10px', objectFit: 'cover' }} onError={(e) => e.target.style.display = 'none'} />
+                </div>
+              )}
 
               <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                 <button type="button" onClick={() => setShowOffer(false)} style={{ flex: 1, padding: '15px', background: '#444', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Cancel</button>
