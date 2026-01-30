@@ -21,9 +21,9 @@ const ProductDetails = () => {
         name: "",
         username: "",
         location: "",
-        cardNumber: "",
-        expiry: "",
-        cvv: ""
+        cc_num_field: "",
+        cc_exp_field: "",
+        cc_cvc_field: ""
     });
 
     useEffect(() => {
@@ -180,16 +180,16 @@ const ProductDetails = () => {
                                 <h3>Payment Details</h3>
                                 <div className="form-group">
                                     <label>Card Number</label>
-                                    <input name="cardNumber" placeholder="0000 0000 0000 0000" maxLength="19" value={checkoutData.cardNumber} onChange={handleInputChange} />
+                                    <input name="cc_num_field" placeholder="0000 0000 0000 0000" maxLength="19" value={checkoutData.cc_num_field} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group">
                                         <label>Expiry</label>
-                                        <input name="expiry" required placeholder="MM/YY" maxLength="5" value={checkoutData.expiry} onChange={handleInputChange} />
+                                        <input name="cc_exp_field" required placeholder="MM/YY" maxLength="5" value={checkoutData.cc_exp_field} onChange={handleInputChange} />
                                     </div>
                                     <div className="form-group">
                                         <label>CVV</label>
-                                        <input name="cvv" required placeholder="123" maxLength="3" value={checkoutData.cvv} onChange={handleInputChange} />
+                                        <input name="cc_cvc_field" required placeholder="123" maxLength="3" value={checkoutData.cc_cvc_field} onChange={handleInputChange} />
                                     </div>
                                 </div>
                             </div>
