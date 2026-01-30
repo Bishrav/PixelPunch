@@ -36,7 +36,7 @@ function Login() {
         padding: 0,
         position: 'relative',
         overflow: 'hidden',
-        background: '#000',        // fallback if video doesn't load
+        background: '#000000c4',        // fallback if video doesn't load
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

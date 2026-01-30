@@ -10,12 +10,12 @@ function CarList() {
   const { isAuthenticated } = useAuth();
 
   const [cars, setCars] = useState([
-    { id: 1, name: "Range Rover", type: "SUV", price: "$95,000" },
-    { id: 2, name: "Porsche 911", type: "Sports", price: "$120,000" },
-    { id: 3, name: "Lamborghini Aventador", type: "Supercar", price: "$450,000" },
-    { id: 4, name: "G-Wagon", type: "SUV", price: "$140,000" },
-    { id: 5, name: "Tesla Model S", type: "Electric", price: "$90,000" },
-    { id: 6, name: "BMW M5", type: "Sedan", price: "$105,000" },
+    { name: "Range Rover", type: "SUV", price: "$95,000" },
+    { name: "Porsche 911", type: "Sports", price: "$120,000" },
+    {  name: "Lamborghini Aventador", type: "Supercar", price: "$450,000" },
+    { name: "G-Wagon", type: "SUV", price: "$140,000" },
+    { name: "Tesla Model S", type: "Electric", price: "$90,000" },
+    { name: "BMW M5", type: "Sedan", price: "$105,000" },
   ]);
 
   const [newCar, setNewCar] = useState({ name: "", type: "", price: "" });
@@ -23,17 +23,13 @@ function CarList() {
 
   const handleAddCar = (e) => {
     e.preventDefault();
-    const carToAdd = {
-      ...newCar,
-      id: cars.length ? Math.max(...cars.map(c => c.id)) + 1 : 1,
-    };
-    setCars([...cars, carToAdd]);
+    setCars([...cars, newCar]);
     setNewCar({ name: "", type: "", price: "" });
     setIsAdding(false);
   };
 
-  const handleDeleteCar = (id) => {
-    setCars(cars.filter(car => car.id !== id));
+  const handleDeleteCar = (index) => {
+    setCars(cars.filter((_, i) => i !== index));
   };
 
   return (
@@ -84,6 +80,7 @@ function CarList() {
                 <label>Car Name</label>
                 <input
                   required
+                  placeholder="eg: Ford Mustang"
                   value={newCar.name}
                   onChange={e => setNewCar({ ...newCar, name: e.target.value })}
                 />
@@ -93,6 +90,7 @@ function CarList() {
                 <label>Type</label>
                 <input
                   required
+                  placeholder="eg: SUV, Sports, Sedan"
                   value={newCar.type}
                   onChange={e => setNewCar({ ...newCar, type: e.target.value })}
                 />
@@ -102,6 +100,7 @@ function CarList() {
                 <label>Price</label>
                 <input
                   required
+                  placeholder="$120,000"
                   value={newCar.price}
                   onChange={e => setNewCar({ ...newCar, price: e.target.value })}
                 />
@@ -112,9 +111,8 @@ function CarList() {
           )}
 
           <div className="car-grid">
-            {cars.map(car => (
-              <div key={car.id} className="car-card">
-                <span className="car-id">ID: {car.id}</span>
+            {cars.map((car, index) => (
+              <div key={index} className="car-card">
                 <h3>{car.name}</h3>
                 <p className="car-type">{car.type}</p>
                 <p className="car-price">{car.price}</p>
@@ -123,7 +121,7 @@ function CarList() {
                   <button className="view-btn">Details</button>
                   <button
                     className="delete-btn"
-                    onClick={() => handleDeleteCar(car.id)}
+                    onClick={() => handleDeleteCar(index)}
                   >
                     Delete
                   </button>
