@@ -75,7 +75,7 @@ function LandingPage() {
                     <h5 onClick={() => navigate("/about-us")} style={{ cursor: 'pointer' }}>About Us</h5>
                     <h5 onClick={() => navigate("/shop")} style={{ cursor: 'pointer' }}>Shop</h5>
                     <h5 onClick={() => navigate("/career")} style={{ cursor: 'pointer' }}>Career</h5>
-                    <h5 onClick={() => navigate("/current-model")} style={{ cursor: 'pointer' }}>Current Model</h5>
+
                     <h5 onClick={() => navigate("/Contemporary")} style={{ cursor: 'pointer' }}>Contemporary</h5>
                 </div>
 

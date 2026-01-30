@@ -10,7 +10,7 @@ import Profile from "./Profile.jsx"
 import AboutUs from "./AboutUs.jsx"
 
 import Career from "./Career.jsx"
-import CurrentModel from "./CurrentModel.jsx"
+
 import Offers from "./Offers.jsx"
 import Collections from "./Collections.jsx"
 import Shop from "./Shop.jsx"
@@ -51,10 +51,7 @@ function App() {
                     path="/career"
                     element={<PrivateRoute><Career /></PrivateRoute>}
                 />
-                <Route
-                    path="/current-model"
-                    element={<PrivateRoute><CurrentModel /></PrivateRoute>}
-                />
+
                 <Route path="/offers" element={<Offers />} />
                 <Route path="/collections" element={<Collections />} />
                 <Route path="/shop" element={<Shop />} />
